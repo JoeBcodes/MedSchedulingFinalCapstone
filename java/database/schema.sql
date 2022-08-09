@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS doctors_in_office;
 DROP TABLE IF EXISTS office;
 DROP TABLE IF EXISTS appointments;
@@ -60,6 +61,18 @@ CREATE TABLE calendar (
         end_time time NOT NULL,
         
         CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE reviews (
+        review_id SERIAL,
+        reviewer_id int NOT NULL,
+        doctor_id int NOT NULL,
+        review_date TIMESTAMP,
+        review_desc varchar(200),
+        rating int NOT NULL,
+        CONSTRAINT PK_review_id PRIMARY KEY (review_id),
+        CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id),
+        CONSTRAINT FK_reviewer_id FOREIGN KEY (reviewer_id) REFERENCES users(user_id)
 );
 
 COMMIT TRANSACTION;
