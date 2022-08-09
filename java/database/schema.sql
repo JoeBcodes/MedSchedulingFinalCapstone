@@ -1,11 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS doctors_in_office;
-DROP TABLE IF EXISTS office;
-DROP TABLE IF EXISTS appointments;
-DROP TABLE IF EXISTS calendar;
-DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS doctors_in_office, office, appointments, calendar, reviews, users CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -27,7 +23,7 @@ CREATE TABLE office (
         email varchar(50) NOT NULL,
         start_hours TIME NOT NULL,
         end_hours TIME NOT NULL,
-        speciality varchar(50),
+        specialty varchar(50),
         hourly_rate DECIMAL,
         CONSTRAINT PK_office PRIMARY KEY (office_id)
 );
@@ -35,9 +31,10 @@ CREATE TABLE office (
 CREATE TABLE appointments (
 
 	appt_id SERIAL,
-	doctor_id int NOT NULL UNIQUE,
-	patient_id int NOT NULL UNIQUE,
-	appt_time TIMESTAMP NOT NULL,
+	doctor_id int NOT NULL,
+	patient_id int NOT NULL,
+	appt_date date NOT NULL,
+	appt_time time NOT NULL,
 	purpose_of_visit varchar(50) NOT NULL,
 	is_completed boolean NOT NULL,
 	is_available boolean NOT NULL,
@@ -55,7 +52,7 @@ CREATE TABLE doctors_in_office (
 );
 
 CREATE TABLE calendar (
-        doctor_id int NOT NULL UNIQUE,
+        doctor_id int NOT NULL,
         day_of_the_week varchar(10) NOT NULL,
         start_time time NOT NULL,
         end_time time NOT NULL,
@@ -67,7 +64,7 @@ CREATE TABLE reviews (
         review_id SERIAL,
         reviewer_id int NOT NULL,
         doctor_id int NOT NULL,
-        review_date TIMESTAMP,
+        review_date date,
         review_desc varchar(200),
         rating int NOT NULL,
         CONSTRAINT PK_review_id PRIMARY KEY (review_id),
