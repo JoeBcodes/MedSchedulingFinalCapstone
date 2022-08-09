@@ -35,12 +35,14 @@ VALUES (1, 3, '2022-08-07', 'Would not eat here again!', 1);
 
 SELECT * FROM reviews;
 
-INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available) 
-VALUES (3, 1, '', '07:00:00', 'quarter stuck up there', false, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (1, 3, '2022-09-12', '07:00:00', 'flu symptoms', false, true);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (2, 4, '2022-09-12', '07:30:00', 'runny nose', true, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (1, 3, '2022-09-12', '08:00:00', 'hypochondriac', false, false);
 
 SELECT * FROM appointments;
-
-INSERT INTO doctors (doctor_id, first_name, last_name, phone, email)
 
 
 COMMIT TRANSACTION;
