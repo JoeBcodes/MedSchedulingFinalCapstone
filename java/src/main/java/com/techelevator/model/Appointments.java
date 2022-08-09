@@ -1,13 +1,16 @@
 package com.techelevator.model;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class Appointments {
 
     private int apptId;
     //change to userId
     private int doctorId;
     private int patientId;
-    private String apptDate;
-    private String apptTime;
+    private Date apptDate;
+    private Time apptTime;
     private String purposeOfVisit;
     private boolean isRead;
     private boolean isAvailable;
@@ -19,7 +22,7 @@ public class Appointments {
 
     ;
 
-    public Appointments(int apptId, int doctorId, int patientId, String apptDate, String apptTime, String purposeOfVisit,
+    public Appointments(int apptId, int doctorId, int patientId, Date apptDate, Time apptTime, String purposeOfVisit,
                         boolean isCompleted, boolean isAvailable) {
         this.apptId = apptId;
         this.doctorId = doctorId;
@@ -56,19 +59,19 @@ public class Appointments {
         this.patientId = patientId;
     }
 
-    public String getApptDate() {
+    public Date getApptDate() {
         return apptDate;
     }
 
-    public void setApptDate(String apptDate) {
+    public void setApptDate(Date apptDate) {
         this.apptDate = apptDate;
     }
 
-    public String getApptTime() {
+    public Time getApptTime() {
         return apptTime;
     }
 
-    public void setApptTime(String apptTime) {
+    public void setApptTime(Time apptTime) {
         this.apptTime = apptTime;
     }
 
