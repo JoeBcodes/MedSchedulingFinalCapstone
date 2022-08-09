@@ -32,6 +32,42 @@
         v-model="user.confirmPassword"
         required
       />
+      <label for="firstName" class="sr-only">First name: </label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        placeholder="FirstName"
+        v-model="user.firstName"
+        required
+      />
+      <label for="lastName" class="sr-only">Last name: </label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        placeholder="LastName"
+        v-model="user.lastName"
+        required
+      />
+      <label for="phone" class="sr-only">Phone #: </label>
+      <input
+        type="text"
+        id="phone"
+        class="form-control"
+        placeholder="Phone"
+        v-model="user.phone"
+        required
+      />
+      <label for="email" class="sr-only">Email: </label>
+      <input
+        type="text"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        v-model="user.email"
+        required
+      />
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -52,6 +88,10 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: ''
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -90,4 +130,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+input {
+  display: block;
+  margin-bottom:10px;
+}
+</style>

@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS doctors_in_office, office, appointments, calendar, reviews, users CASCADE;
 
+DROP TABLE IF EXISTS doctors_in_office, office, appointments, calendar, reviews, users CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
