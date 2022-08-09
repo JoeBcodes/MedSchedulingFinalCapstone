@@ -1,4 +1,59 @@
 package com.techelevator.dao;
 
-public class JdbcOfficeDao {
+import com.techelevator.model.Office;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
+
+public class JdbcOfficeDao implements OfficeDao {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcOfficeDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public Office getOfficeById(int officeId) {
+        Office office = null;
+        String sql = "SELECT office_id, name, address, phone, email, start_hours, end_hours, specialty, hourly_rate " +
+                "FROM office " +
+                "WHERE office_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, officeId);
+        if (results.next()) {
+            office = mapRowToOffice(results);
+        }
+        return office;
+    }
+
+    @Override
+    public List<Office> getAllOffices() {
+        List<Office> offices = new ArrayList<>();
+        String sql = "SELECT office_id, name, address, phone, email, start_hours, end_hours, specialty, hourly_rate " +
+                "FROM office;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            Office office = mapRowToOffice(results);
+            offices.add(office);
+        }
+        return offices;
+    }
+
+    private Office mapRowToOffice(SqlRowSet rs) {
+        Office office = new Office();
+        office.setOfficeId(rs.getInt("office_id"));
+        office.setName(rs.getString("name"));
+        office.setAddress(rs.getString("address"));
+        office.setPhone(rs.getString("phone"));
+        office.setEmail(rs.getString("email"));
+        office.setStartHours(rs.getTime("start_hours"));
+        office.setEndHours(rs.getTime("end_hours"));
+        office.setSpecialty(rs.getString("specialty"));
+        office.setHourlyRate(rs.getDouble("hourly_rate"));
+        return office;
+    }
+
 }
