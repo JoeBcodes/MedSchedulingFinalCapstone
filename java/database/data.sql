@@ -35,6 +35,7 @@ VALUES (1, 3, '2022-08-07', 'Would not eat here again!', 1);
 
 SELECT * FROM reviews;
 
+<<<<<<< HEAD
 INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available) 
 VALUES (3, 1, '2022-08-01', '07:00:00', 'quarter stuck up there', false, false);
 
@@ -53,5 +54,18 @@ INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
 VALUES (2, 3, '2022-08-05 11:30:00', 'Doctor Bozo was not funny. I was expecting a funny doctor, ya know, because of the name.', 3);
 INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
 VALUES (2, 4, '2022-08-07 12:34:00', 'Would not eat here again!', 1);
+=======
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (1, 3, '2022-09-12', '07:00:00', 'flu symptoms', false, true);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (2, 4, '2022-09-12', '07:30:00', 'runny nose', true, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_completed, is_available)
+VALUES (1, 3, '2022-09-12', '08:00:00', 'hypochondriac', false, false);
+
+SELECT * FROM appointments;
+
+>>>>>>> 6a3063c29467cdc8bd5e86af3990d3668ae8a6df
 
 COMMIT TRANSACTION;
+
+

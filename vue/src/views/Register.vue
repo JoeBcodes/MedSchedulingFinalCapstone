@@ -32,22 +32,22 @@
         v-model="user.confirmPassword"
         required
       />
-      <label for="firstname" class="sr-only">First name: </label>
+      <label for="firstName" class="sr-only">First name: </label>
       <input
         type="text"
-        id="firstname"
+        id="firstName"
         class="form-control"
         placeholder="FirstName"
-        v-model="user.firstname"
+        v-model="user.firstName"
         required
       />
-      <label for="lastname" class="sr-only">Last name: </label>
+      <label for="lastName" class="sr-only">Last name: </label>
       <input
         type="text"
-        id="lastname"
+        id="lastName"
         class="form-control"
         placeholder="LastName"
-        v-model="user.lastname"
+        v-model="user.lastName"
         required
       />
       <label for="phone" class="sr-only">Phone #: </label>
@@ -88,8 +88,8 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         phone: '',
         email: ''
       },

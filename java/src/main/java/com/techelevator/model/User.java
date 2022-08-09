@@ -12,18 +12,69 @@ public class User {
    private String username;
    @JsonIgnore
    private String password;
+   private String role;
+   private String firstName;
+   private String lastName;
+   private String phone;
+   private String email;
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public User(int id, String username, String password, String authorities, String role, String firstName,
+               String lastName, String phone, String email) {
       this.id = id;
       this.username = username;
       this.password = password;
+      this.role = role;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.phone = phone;
+      this.email = email;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+   }
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
+   public String getPhone() {
+      return phone;
+   }
+
+   public void setPhone(String phone) {
+      this.phone = phone;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
    }
 
    public int getId() {
@@ -88,7 +139,7 @@ public class User {
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, username, password, activated, authorities);
+      return Objects.hash(id, username, password, activated, authorities, firstName, lastName, phone, email);
    }
 
    @Override
@@ -98,6 +149,10 @@ public class User {
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
+              ", firstName=" + firstName +
+              ", lastName=" + lastName +
+              ", phone=" + phone +
+              ", email=" + email +
               '}';
    }
 }
