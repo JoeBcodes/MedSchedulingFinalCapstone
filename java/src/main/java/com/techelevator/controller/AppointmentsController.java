@@ -23,6 +23,12 @@ public class AppointmentsController {
         this.appointmentsDao = new JdbcAppointmentsDao(dataSource);
     }
 
+    //do we need a preauthorize for user? or just general access for reviews
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Appointments getApptByApptId(@PathVariable int id) {
+        return appointmentsDao.getApptById(id);
+    }
+
     //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
