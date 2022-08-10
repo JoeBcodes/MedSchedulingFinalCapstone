@@ -57,7 +57,9 @@ JOIN users pu
 ON a.patient_id = pu.user_id
 WHERE doctor_id = 1 AND is_available = false;
 
-
+SELECT appt_id, doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available
+FROM appointments 
+WHERE appt_id = 1;
 
 COMMIT TRANSACTION;
 

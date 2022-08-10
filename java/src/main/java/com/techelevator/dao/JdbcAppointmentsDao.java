@@ -20,9 +20,23 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
 
 //    @Override
 //    public int findIdByApptDate() {}
-
-
-    //change to userId
+    
+    @Override
+    public Appointments getApptById(int apptId) {
+        Appointments appointment = null;
+        String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
+                "FROM appointments a " +
+                "JOIN users du " +
+                "ON a.doctor_id = du.user_id " +
+                "JOIN users pu " +
+                "ON a.patient_id = pu.user_id " +
+                "WHERE appt_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, apptId);
+        if(result.next()) {
+            appointment = mapRowToAppointments(result);
+        }
+        return appointment;
+    }
 
 //isAvailable should be false, should only be visible to Drs// must also display the patient name
     //sql use OR
