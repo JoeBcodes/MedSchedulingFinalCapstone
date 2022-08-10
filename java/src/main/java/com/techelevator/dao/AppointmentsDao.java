@@ -14,4 +14,8 @@ public interface AppointmentsDao {
 
     List<Appointments> getAllAvailableAppts();
 
+    void createAppt(Appointments appointment);
+
+    List<Appointments> getUnreadAppts();
+
 }

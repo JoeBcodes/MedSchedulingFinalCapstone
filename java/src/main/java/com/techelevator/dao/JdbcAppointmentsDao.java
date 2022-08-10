@@ -20,7 +20,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
 
 //    @Override
 //    public int findIdByApptDate() {}
-    
+
     @Override
     public Appointments getApptById(int apptId) {
         Appointments appointment = null;
@@ -101,10 +101,38 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
-//    @Override
-//    public Appointments findAllApptByPatient(int patientId) {
-//        return null;
-//    }
+
+    @Override
+    public void createAppt(Appointments appointment) {
+        String sql = "INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?);";
+        jdbcTemplate.update(sql, appointment.getDoctorId(), appointment.getPatientId(),
+                appointment.getApptDate(), appointment.getApptTime(), appointment.getPurposeOfVisit(), appointment.isRead(),
+                appointment.isAvailable());
+        }
+
+
+    //appt notification  - GET - use isRead = false
+    @Override
+    public List<Appointments> getUnreadAppts() {
+        List <Appointments> appointments = new ArrayList<>();
+        String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, " +
+                "a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, " +
+                "a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
+                "FROM appointments a " +
+                "JOIN users du " +
+                "ON a.doctor_id = du.user_id " +
+                "JOIN users pu " +
+                "ON a.patient_id = pu.user_id " +
+                "WHERE is_read = false;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            Appointments appointment = mapRowToAppointments(results);
+            appointments.add(appointment);
+        }
+        return appointments;
+    }
+
 
     private Appointments mapRowToAppointments(SqlRowSet rs) {
         Appointments appointment = new Appointments();
