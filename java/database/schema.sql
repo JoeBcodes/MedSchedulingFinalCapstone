@@ -36,7 +36,7 @@ CREATE TABLE appointments (
 	appt_date date NOT NULL,
 	appt_time time NOT NULL,
 	purpose_of_visit varchar(50) NOT NULL,
-	is_completed boolean NOT NULL,
+	is_read boolean NOT NULL,
 	is_available boolean NOT NULL,
 	
 	CONSTRAINT PK_appt_id PRIMARY KEY (appt_id),
