@@ -44,7 +44,7 @@ VALUES (1, 3, '2022-09-12', '08:00:00', 'hypochondriac', false, false);
 
 SELECT * FROM appointments;
 
-SELECT a.doctor_id, du.first_name ||''|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||''|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available
+SELECT a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available
 FROM appointments a
 JOIN users du
 ON a.doctor_id = du.user_id

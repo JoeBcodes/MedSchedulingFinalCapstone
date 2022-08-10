@@ -29,6 +29,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
     @Override
     public List <Appointments> getAllBookedApptsByDoctor(int userId) {
         List <Appointments> appointments = new ArrayList<>();
+
         String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||''|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
                 "FROM appointments a " +
                 "JOIN users du " +
