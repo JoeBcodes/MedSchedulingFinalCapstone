@@ -1,9 +1,13 @@
-SELECT a.doctor_id, du.first_name ||''|| du.last_name AS doctor_name, 
-                a.patient_id, pu.first_name ||''|| pu.last_name AS patient_name, 
-                a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available 
-                FROM appointments a 
+SELECT r.review_id, r.reviewer_id, ru.first_name || ' ' || ru.last_name AS reviewer_name, 
+                    r.review_date, r.doctor_id, du.first_name || ' ' || du.last_name AS doctor_name, 
+                    r.review_desc, r.rating, o.name 
+                FROM reviews r 
+                JOIN users ru 
+                ON r.reviewer_id = ru.user_id 
                 JOIN users du 
-                ON a.doctor_id = du.user_id 
-                JOIN users pu 
-                ON a.patient_id = pu.user_id 
-                WHERE is_available = true;
+                ON r.doctor_id = du.user_id 
+                JOIN doctors_in_office dio 
+                ON r.doctor_id = dio.doctor_id 
+                JOIN office o 
+                ON dio.office_id = o.office_id 
+                WHERE r.doctor_id = 2;
