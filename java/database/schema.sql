@@ -46,7 +46,7 @@ CREATE TABLE appointments (
 
 CREATE TABLE doctors_in_office (
         office_id int,
-        doctor_id int,
+        doctor_id int UNIQUE,
         CONSTRAINT FK_office_id FOREIGN KEY (office_id) REFERENCES office(office_id),
         CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id)
 );
@@ -69,7 +69,8 @@ CREATE TABLE reviews (
         rating int NOT NULL,
         CONSTRAINT PK_review_id PRIMARY KEY (review_id),
         CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id),
-        CONSTRAINT FK_reviewer_id FOREIGN KEY (reviewer_id) REFERENCES users(user_id)
+        CONSTRAINT FK_reviewer_id FOREIGN KEY (reviewer_id) REFERENCES users(user_id),
+        CONSTRAINT FK_doctor_office FOREIGN KEY (doctor_id) REFERENCES doctors_in_office(doctor_id)
 );
 
 COMMIT TRANSACTION;
