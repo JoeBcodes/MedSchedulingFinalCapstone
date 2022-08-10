@@ -5,10 +5,7 @@ import com.techelevator.dao.AppointmentsDao;
 import com.techelevator.dao.JdbcAppointmentsDao;
 import com.techelevator.model.Appointments;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -45,5 +42,15 @@ public class AppointmentsController {
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsList() {
         return appointmentsDao.getAllAvailableAppts();
+    }
+
+    @RequestMapping(path = "/doctor/notifications", method = RequestMethod.GET)
+    public List<Appointments> getUnreadApptsList() {
+        return appointmentsDao.getUnreadAppts();
+    }
+
+    @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
+    public void createNewAppt(@RequestBody Appointments appointment) {
+        appointmentsDao.createAppt(appointment);
     }
 }
