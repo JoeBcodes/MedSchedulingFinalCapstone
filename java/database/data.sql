@@ -24,6 +24,11 @@ VALUES ('Med Elevator', '5960 Berkshire ln, Dallas, TX 75225', '877-606-3203', '
 
 SELECT * FROM office;
 
+INSERT INTO doctors_in_office (office_id, doctor_id)
+VALUES (1, 2);
+INSERT INTO doctors_in_office (office_id, doctor_id)
+VALUES (1, 3);
+
 INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
 VALUES (1, 2, '2022-08-01', 'Very Professional. Good diagnosis. I DID have a quarter stuck up there. 10/10.', 5);
 INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)

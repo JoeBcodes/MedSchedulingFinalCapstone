@@ -5,6 +5,12 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
+      <span>I am registering as a:</span><br />
+      <input type="radio" name="role" value="doctor" v-model="user.role" />
+      <label for="role">Doctor</label>
+      <input type="radio" name="role" value="patient" v-model="user.role" />
+      <label for="role">Patient</label>
+      <br />
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -68,10 +74,12 @@
         v-model="user.email"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+
+      <router-link :to="{ name: 'login' }">Have an account?</router-link>
     </form>
   </div>
 </template>
@@ -132,6 +140,13 @@ export default {
 
 <style>
 input {
+  display: block;
+  margin-bottom:10px;
+}
+input[type="radio"] {
+  display: inline;
+}
+.form-register button {
   display: block;
   margin-bottom:10px;
 }
