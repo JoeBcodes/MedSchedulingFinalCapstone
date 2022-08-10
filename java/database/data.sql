@@ -20,7 +20,9 @@ VALUES (1, 'Tuesday', '08:00:00', '17:00:00');
 SELECT * FROM calendar;
 
 INSERT INTO office (name, address, phone, email, start_hours, end_hours, specialty, hourly_rate) 
-VALUES ('Med Elevator', '5960 Berkshire ln, Dallas, TX 75225', '877-606-3203', 'office@medelevator.com', '07:00:00', '17:00:00', 'General', 50000.0);
+VALUES ('Med Elevator', '5960 Berkshire Ln, Dallas, TX 75225', '877-606-3203', 'office@medelevator.com', '07:00:00', '17:00:00', 'General', 50000.0);
+INSERT INTO office (name, address, phone, email, start_hours, end_hours, specialty, hourly_rate)
+VALUSE ('Test Med Dental', '1234 New Rd, Los Angeles, CA 92541', '123-456-7890', 'office@testmeddental.com', '07:00:00', '17:00:00', 'Dental', 900000.0);
 
 SELECT * FROM office;
 
@@ -31,12 +33,12 @@ VALUES (1, 3);
 
 INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
 VALUES (1, 2, '2022-08-01', 'Very Professional. Good diagnosis. I DID have a quarter stuck up there. 10/10.', 5);
-INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
-VALUES (1, 3, '2022-08-03', 'It was alright.', 4);
+INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating, doctor_reply)
+VALUES (1, 3, '2022-08-03', 'It was alright.', 4, 'Thank you for the positive feedback');
 INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
 VALUES (1, 2, '2022-08-05', 'Doctor Bozo was not funny. I was expecting a funny doctor, ya know, because of the name.', 3);
-INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating)
-VALUES (1, 3, '2022-08-07', 'Would not eat here again!', 1);
+INSERT INTO reviews (reviewer_id, doctor_id, review_date, review_desc, rating, doctor_reply)
+VALUES (1, 3, '2022-08-07', 'Would not eat here again!', 1, 'Please do not book another appointment with us.');
 
 SELECT * FROM reviews;
 

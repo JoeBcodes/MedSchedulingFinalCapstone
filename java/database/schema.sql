@@ -68,6 +68,7 @@ CREATE TABLE reviews (
         review_date date,
         review_desc varchar(200),
         rating int NOT NULL,
+        doctor_reply varchar(200),
         CONSTRAINT PK_review_id PRIMARY KEY (review_id),
         CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id),
         CONSTRAINT FK_reviewer_id FOREIGN KEY (reviewer_id) REFERENCES users(user_id),
