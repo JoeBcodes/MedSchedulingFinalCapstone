@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Reviews {
 
-    @NotBlank
+    //@NotBlank
     private int reviewId;
     private int reviewerId;
     private String reviewerName;
@@ -15,10 +15,11 @@ public class Reviews {
     private String doctorName;
     private String reviewDesc;
     private int rating;
+    private String doctorReply;
 
     public Reviews() { }
 
-    public Reviews(int reviewId, int reviewerId, String reviewerName, Date reviewDate, String officeName, int doctorId, String doctorName, String reviewDesc, int rating) {
+    public Reviews(int reviewId, int reviewerId, String reviewerName, Date reviewDate, String officeName, int doctorId, String doctorName, String reviewDesc, int rating, String doctorReply) {
         this.reviewId = reviewId;
         this.reviewerId = reviewerId;
         this.reviewerName = reviewerName;
@@ -28,6 +29,7 @@ public class Reviews {
         this.doctorName = doctorName;
         this.reviewDesc = reviewDesc;
         this.rating = rating;
+        this.doctorReply = doctorReply;
     }
 
     public int getReviewId() {
@@ -102,6 +104,14 @@ public class Reviews {
         this.officeName = officeName;
     }
 
+    public String getDoctorReply() {
+        return doctorReply;
+    }
+
+    public void setDoctorReply(String doctorReply) {
+        this.doctorReply = doctorReply;
+    }
+
     @Override
     public String toString() {
         return "Review: " +
@@ -111,6 +121,7 @@ public class Reviews {
                 "Office: " + officeName +
                 "Doctor: " + doctorName +
                 "Review: " + reviewDesc +
-                "Rating: " + rating;
+                "Rating: " + rating +
+                "Doctor Reply " + doctorReply;
     }
 }
