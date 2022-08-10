@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface AppointmentsDao {
 
-    List<Appointments> getAllBookedApptsByDoctor(int userId, boolean isAvailable);
+    List<Appointments> getAllBookedApptsByDoctor(int userId);
 
-    List <Appointments> getAllAvailableApptsByDoctor(int userId, boolean isAvailable);
+    List <Appointments> getAllAvailableApptsByDoctor(int userId);
 
-    List<Appointments> getAllAvailableAppts(boolean isAvailable);
+    List<Appointments> getAllAvailableAppts();
 
 }

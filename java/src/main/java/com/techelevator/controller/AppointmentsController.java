@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @RequestMapping("/appointments")
-@PreAuthorize("isAuthenticated")
+//@PreAuthorize("isAuthenticated()")
 @RestController
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
@@ -23,18 +23,21 @@ public class AppointmentsController {
         this.appointmentsDao = new JdbcAppointmentsDao(dataSource);
     }
 
-    @RequestMapping(path = "/booked/{id}", method = RequestMethod.GET)
-    public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int userId, boolean isAvailable) {
-        return appointmentsDao.getAllBookedApptsByDoctor(userId, isAvailable);
+    //@PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
+    public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
+        return appointmentsDao.getAllBookedApptsByDoctor(id);
     }
 
-    @RequestMapping(path = "/available/{id}", method = RequestMethod.GET)
-    public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int userId, boolean isAvailable) {
-        return appointmentsDao.getAllAvailableApptsByDoctor(userId, isAvailable);
+    //@PreAuthorize("hasRole('PATIENT')")
+    @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
+    public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
+        return appointmentsDao.getAllAvailableApptsByDoctor(id);
     }
 
-    @RequestMapping(path = "available", method = RequestMethod.GET)
-    public List<Appointments> getAllAvailableApptsList(@PathVariable boolean isAvailable) {
-        return appointmentsDao.getAllAvailableAppts(isAvailable);
+    //@PreAuthorize("hasRole('PATIENT')")
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Appointments> getAllAvailableApptsList() {
+        return appointmentsDao.getAllAvailableAppts();
     }
 }

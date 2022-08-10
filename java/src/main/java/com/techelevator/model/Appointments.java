@@ -23,7 +23,7 @@ public class Appointments {
     ;
 
     public Appointments(int apptId, int doctorId, int patientId, Date apptDate, Time apptTime, String purposeOfVisit,
-                        boolean isCompleted, boolean isAvailable) {
+                        boolean isRead, boolean isAvailable, String doctorName, String patientName) {
         this.apptId = apptId;
         this.doctorId = doctorId;
         this.patientId = patientId;
@@ -32,6 +32,8 @@ public class Appointments {
         this.purposeOfVisit = purposeOfVisit;
         this.isRead = isRead;
         this.isAvailable = isAvailable;
+        this.doctorName = doctorName;
+        this.patientName = patientName;
     }
 
 
@@ -87,8 +89,8 @@ public class Appointments {
         return isRead;
     }
 
-    public void setRead(boolean completed) {
-        isRead = completed;
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     public boolean isAvailable() {
@@ -97,6 +99,22 @@ public class Appointments {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
     }
 
     @Override
@@ -110,6 +128,8 @@ public class Appointments {
                 ", purposeOfVisit=" + purposeOfVisit +
                 ", isRead=" + isRead +
                 ", isAvailable=" + isAvailable +
+                ", doctorName=" + doctorName +
+                ", patientName=" + patientName +
                 '}';
     }
 }
