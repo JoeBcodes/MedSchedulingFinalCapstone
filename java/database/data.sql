@@ -22,7 +22,7 @@ SELECT * FROM calendar;
 INSERT INTO office (name, address, phone, email, start_hours, end_hours, specialty, hourly_rate) 
 VALUES ('Med Elevator', '5960 Berkshire Ln, Dallas, TX 75225', '877-606-3203', 'office@medelevator.com', '07:00:00', '17:00:00', 'General', 50000.0);
 INSERT INTO office (name, address, phone, email, start_hours, end_hours, specialty, hourly_rate)
-VALUSE ('Test Med Dental', '1234 New Rd, Los Angeles, CA 92541', '123-456-7890', 'office@testmeddental.com', '07:00:00', '17:00:00', 'Dental', 900000.0);
+VALUES ('Test Med Dental', '1234 New Rd, Los Angeles, CA 92541', '123-456-7890', 'office@testmeddental.com', '07:00:00', '17:00:00', 'Dental', 900000.0);
 
 SELECT * FROM office;
 
