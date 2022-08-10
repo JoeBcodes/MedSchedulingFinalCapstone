@@ -52,6 +52,7 @@ CREATE TABLE doctors_in_office (
 );
 
 CREATE TABLE calendar (
+        calendar_id SERIAL,
         doctor_id int NOT NULL,
         day_of_the_week varchar(10) NOT NULL,
         start_time time NOT NULL,

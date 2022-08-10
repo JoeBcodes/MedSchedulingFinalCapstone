@@ -2,6 +2,7 @@ package com.techelevator.model;
 import java.sql.Time;
 
 public class Calendar {
+    private int calendarId;
     private int doctorId;
     private String dayOfTheWeek;
     private Time startTime;
@@ -10,8 +11,8 @@ public class Calendar {
     public Calendar() {
     }
 
-    public Calendar(int doctorId, String dayOfTheWeek, Time startTime, Time endTime) {
-
+    public Calendar(int doctorId, String dayOfTheWeek, Time startTime, Time endTime, int calendarId) {
+        this.calendarId = calendarId;
         this.doctorId = doctorId;
         this.dayOfTheWeek = dayOfTheWeek;
         this.startTime = startTime;
@@ -50,10 +51,19 @@ public class Calendar {
         this.endTime = endTime;
     }
 
+    public int getCalendarId() {
+        return calendarId;
+    }
+
+    public void setCalendarId(int calendarId) {
+        this.calendarId = calendarId;
+    }
+
     @Override
     public String toString() {
         return "Calendar{" +
-                " doctorId=" + doctorId +
+                " calendarId=" + calendarId +
+                ", doctorId=" + doctorId +
                 ", dayOfTheWeek=" + dayOfTheWeek +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +

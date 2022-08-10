@@ -4,10 +4,8 @@ import com.techelevator.dao.JdbcCalendarDao;
 import com.techelevator.model.Calendar;
 import com.techelevator.model.User;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.util.List;
@@ -28,6 +26,15 @@ public class CalendarController {
         return dao.viewCalendar(doctorId);
     }
 
+    @RequestMapping(path = "", method = RequestMethod.PUT)
+    public  void updateCalendarByDoctorId(@RequestBody Calendar calendar) {
+        dao.updateCalendar(calendar);
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public void createCalendarByDoctorId(@RequestBody Calendar calendar) {
+         dao.createCalendar(calendar);
+    }
 
 
 }

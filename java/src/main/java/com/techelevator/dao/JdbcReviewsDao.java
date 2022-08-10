@@ -64,6 +64,7 @@ public class JdbcReviewsDao implements ReviewsDao {
         return reviews;
     }
 
+
     @Override
     public Reviews getReviewById(int reviewId) {
         Reviews review = new Reviews();
@@ -101,6 +102,7 @@ public class JdbcReviewsDao implements ReviewsDao {
                 "WHERE review_id = ?;";
         jdbcTemplate.update(sql, review.getDoctorReply(), review.getReviewId());
     }
+
 
 
 
