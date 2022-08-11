@@ -12,7 +12,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/appointments")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
@@ -28,11 +28,11 @@ public class AppointmentsController {
         return appointmentsDao.getApptById(id);
     }
 
-    //@PreAuthorize("hasRole('DOCTOR')")
-    @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
     //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
-    public List<Appointments> getAllBookedApptsByDoctorList(Principal principal) {
-        return appointmentsDao.getAllBookedApptsByDoctor(principal.getName());
+    public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable String username) {
+        return appointmentsDao.getAllBookedApptsByDoctor(username);
     }
 
     @PreAuthorize("hasRole('PATIENT')")
@@ -59,7 +59,7 @@ public class AppointmentsController {
         return appointmentsDao.getUnreadAppts();
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
+    @PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
     public void createNewAppt(@RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
