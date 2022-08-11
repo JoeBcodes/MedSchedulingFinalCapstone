@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class JdbcCalendarDao implements CalendarDao {
                 "WHERE doctor_id = ? AND calendar_id = ?;";
         jdbcTemplate.update(sql, calendar.getDayOfTheWeek(),
                 calendar.getStartTime(), calendar.getEndTime(), calendar.getDoctorId(), calendar.getCalendarId());
-
 
     }
 

@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @RequestMapping("/appointments")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
@@ -20,40 +20,41 @@ public class AppointmentsController {
         this.appointmentsDao = new JdbcAppointmentsDao(dataSource);
     }
 
+    @PreAuthorize("permitAll()")
     //do we need a preauthorize for user? or just general access for reviews
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Appointments getApptByApptId(@PathVariable int id) {
         return appointmentsDao.getApptById(id);
     }
 
-    //@PreAuthorize("hasRole('DOCTOR')")
+    @PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
         return appointmentsDao.getAllBookedApptsByDoctor(id);
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
+    @PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
         return appointmentsDao.getAllAvailableApptsByDoctor(id);
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
+    @PreAuthorize("permitAll()")
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsList() {
         return appointmentsDao.getAllAvailableAppts();
     }
 
-    @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
-    public void createNewAppt(@RequestBody Appointments appointment) {
-        appointmentsDao.createAppt(appointment);
-    }
-
-
+    @PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/notifications", method = RequestMethod.GET)
     public List<Appointments> getUnreadApptsList() {
         return appointmentsDao.getUnreadAppts();
     }
 
+    @PreAuthorize("hasRole('PATIENT')")
+    @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
+    public void createNewAppt(@RequestBody Appointments appointment) {
+        appointmentsDao.createAppt(appointment);
+    }
 
 }

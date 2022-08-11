@@ -120,7 +120,8 @@ public class User {
    public void setAuthorities(String authorities) {
       String[] roles = authorities.split(",");
       for(String role : roles) {
-         String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
+         //String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
+         String authority = role;
          this.authorities.add(new Authority(authority));
       }
    }
