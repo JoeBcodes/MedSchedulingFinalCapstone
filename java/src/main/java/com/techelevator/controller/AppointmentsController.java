@@ -4,6 +4,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.AppointmentsDao;
 import com.techelevator.dao.JdbcAppointmentsDao;
 import com.techelevator.model.Appointments;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,11 @@ import javax.sql.DataSource;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/appointments")
-//@PreAuthorize("isAuthenticated()")
+
+
 @RestController
+@RequestMapping("/appointments")
+@PreAuthorize("isAuthenticated()")
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
 
@@ -28,19 +31,22 @@ public class AppointmentsController {
         return appointmentsDao.getApptById(id);
     }
 
-    //@PreAuthorize("hasRole('DOCTOR')")
-    @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
     //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
-    public List<Appointments> getAllBookedApptsByDoctorList(Principal principal) {
-        return appointmentsDao.getAllBookedApptsByDoctor(principal.getName());
+    public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable String username, Principal principal) {
+        return appointmentsDao.getAllBookedApptsByDoctor(username);
     }
 
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @PreAuthorize("hasRole('PATIENT')")
-    @RequestMapping(path = "/patient-booked/{id}", method = RequestMethod.GET)
-    public List<Appointments> getAllBookedApptsByPatientList(Principal principal) {
-        return appointmentsDao.getAllBookedApptsByPatient(principal.getName());
+    @RequestMapping(path = "/patient-booked/{username}", method = RequestMethod.GET)
+    public List<Appointments> getAllBookedApptsByPatientList(@PathVariable String username, Principal principal) {
+        return appointmentsDao.getAllBookedApptsByPatient(username);
     }
 
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
