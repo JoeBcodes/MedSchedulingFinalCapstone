@@ -30,9 +30,19 @@ public class OfficeController {
         return officeDao.getAllOffices();
     }
 
-    //Still early stages on updating office info
     @RequestMapping(path = "/{id}/update", method = RequestMethod.PUT)
     public void updateInfoByOfficeId(@Valid @RequestBody Office office, @PathVariable int id) {
         officeDao.updateOfficeInfo(office, id);
     }
+
+    @RequestMapping(path = "/{officeId}/update/add-doctor")
+    public void addNewDoctorToOffice(@PathVariable int officeId, int doctorId) {
+        officeDao.addDoctorToOffice(officeId, doctorId);
+    }
+
+    @RequestMapping(path= "/{officeId}/update/remove-doctor")
+    public void removeDoctorFromCurrentOffice(@PathVariable int officeId, int doctorId) {
+        officeDao.removeDoctorFromOffice(officeId, doctorId);
+    }
+
 }
