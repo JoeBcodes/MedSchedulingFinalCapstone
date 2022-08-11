@@ -68,7 +68,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 "ON a.doctor_id = du.user_id " +
                 "JOIN users pu " +
                 "ON a.patient_id = pu.user_id " +
-                "WHERE username = ? AND is_available = false;";
+                "WHERE pu.username = ? AND is_available = false;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Appointments appointment = mapRowToAppointments(results);
