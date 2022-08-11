@@ -51,6 +51,28 @@ public class JdbcOfficeDao implements OfficeDao {
         jdbcTemplate.update(sql, office.getAddress(), office.getPhone(), office.getStartHours(), office.getEndHours(), office.getSpecialty(), officeId);
     }
 
+    @Override
+    public void addDoctorToOffice(int officeId, int doctorId) {
+        String sql = "INSERT INTO doctors_in_office (doctor_id, office_id) " +
+                "VALUES (?, ?);";
+        jdbcTemplate.update(sql, doctorId, officeId);
+    }
+
+    @Override
+    public void updateDoctorOffice(int officeId, int doctorId) {
+        String sql = "UPDATE doctors_in_office " +
+                "SET office_id = ? " +
+                "WHERE doctor_id = ?;";
+        jdbcTemplate.update(sql, officeId, doctorId);
+    }
+
+    @Override
+    public void removeDoctorFromOffice(int officeId, int doctorId) {
+        String sql = "DELETE FROM doctors_in_office " +
+                "WHERE doctorId = ?; AND officeId = ?";
+        jdbcTemplate.update(sql, doctorId, officeId);
+    }
+
     private Office mapRowToOffice(SqlRowSet rs) {
         Office office = new Office();
         office.setOfficeId(rs.getInt("office_id"));
