@@ -8,10 +8,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/appointments")
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 @RestController
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
@@ -27,10 +28,17 @@ public class AppointmentsController {
         return appointmentsDao.getApptById(id);
     }
 
-    @PreAuthorize("hasRole('DOCTOR')")
+    //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{id}", method = RequestMethod.GET)
-    public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
-        return appointmentsDao.getAllBookedApptsByDoctor(id);
+    //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
+    public List<Appointments> getAllBookedApptsByDoctorList(Principal principal) {
+        return appointmentsDao.getAllBookedApptsByDoctor(principal.getName());
+    }
+
+    @PreAuthorize("hasRole('PATIENT')")
+    @RequestMapping(path = "/patient-booked/{id}", method = RequestMethod.GET)
+    public List<Appointments> getAllBookedApptsByPatientList(Principal principal) {
+        return appointmentsDao.getAllBookedApptsByPatient(principal.getName());
     }
 
     @PreAuthorize("hasRole('PATIENT')")
@@ -51,10 +59,12 @@ public class AppointmentsController {
         return appointmentsDao.getUnreadAppts();
     }
 
-    @PreAuthorize("hasRole('PATIENT')")
+    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
     public void createNewAppt(@RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
     }
+
+
 
 }
