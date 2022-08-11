@@ -140,9 +140,9 @@ public class User {
 
    @Override
    public int hashCode() {
-      return Objects.hash(userId, username, password, activated, authorities, firstName, lastName, phone, email);
-   }
+      return Objects.hash(userId, username, password, activated, authorities, role, firstName, lastName, phone, email);
 
+   }
    @Override
    public String toString() {
       return "User{" +
@@ -150,6 +150,7 @@ public class User {
               ", username='" + username + '\'' +
               ", activated=" + activated +
               ", authorities=" + authorities +
+              ", role=" + role +
               ", firstName=" + firstName +
               ", lastName=" + lastName +
               ", phone=" + phone +
