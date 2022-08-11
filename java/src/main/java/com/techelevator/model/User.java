@@ -141,8 +141,8 @@ public class User {
    @Override
    public int hashCode() {
       return Objects.hash(userId, username, password, activated, authorities, role, firstName, lastName, phone, email);
-
    }
+
    @Override
    public String toString() {
       return "User{" +

@@ -12,8 +12,6 @@ import javax.sql.DataSource;
 import java.security.Principal;
 import java.util.List;
 
-
-
 @RestController
 @RequestMapping("/appointments")
 @PreAuthorize("isAuthenticated()")
@@ -30,6 +28,7 @@ public class AppointmentsController {
     public Appointments getApptByApptId(@PathVariable int id) {
         return appointmentsDao.getApptById(id);
     }
+
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @PreAuthorize("hasRole('DOCTOR')")
@@ -65,7 +64,7 @@ public class AppointmentsController {
         return appointmentsDao.getUnreadAppts();
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
+    @PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
     public void createNewAppt(@RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
