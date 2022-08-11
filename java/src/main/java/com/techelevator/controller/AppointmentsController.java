@@ -56,4 +56,5 @@ public class AppointmentsController {
     public void createNewAppt(@RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
     }
+
 }
