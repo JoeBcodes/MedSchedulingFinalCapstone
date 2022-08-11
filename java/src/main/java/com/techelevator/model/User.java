@@ -78,7 +78,7 @@ public class User {
    }
 
    public int getUserId() {
-      return getUserId();
+      return userId;
    }
 
    public void setUserId(int userId) {
