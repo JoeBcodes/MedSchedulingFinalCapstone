@@ -6,9 +6,9 @@
         {{ registrationErrorMsg }}
       </div>
       <span>I am registering as a:</span><br />
-      <input type="radio" name="role" value="doctor" v-model="user.role" />
+      <input type="radio" name="role" value="DOCTOR" v-model="user.role" />
       <label for="role">Doctor</label>
-      <input type="radio" name="role" value="patient" v-model="user.role" />
+      <input type="radio" name="role" value="PATIENT" v-model="user.role" />
       <label for="role">Patient</label>
       <br />
       <label for="username" class="sr-only">Username</label>
@@ -95,7 +95,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
-        role: 'user',
+        role: '',
         firstName: '',
         lastName: '',
         phone: '',
