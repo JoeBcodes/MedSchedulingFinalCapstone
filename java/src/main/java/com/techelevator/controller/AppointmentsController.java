@@ -44,13 +44,16 @@ public class AppointmentsController {
         return appointmentsDao.getAllAvailableAppts();
     }
 
+    @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
+    public void createNewAppt(@RequestBody Appointments appointment) {
+        appointmentsDao.createAppt(appointment);
+    }
+
+
     @RequestMapping(path = "/doctor/notifications", method = RequestMethod.GET)
     public List<Appointments> getUnreadApptsList() {
         return appointmentsDao.getUnreadAppts();
     }
 
-    @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
-    public void createNewAppt(@RequestBody Appointments appointment) {
-        appointmentsDao.createAppt(appointment);
-    }
+
 }
