@@ -8,7 +8,9 @@ public interface AppointmentsDao {
 
     Appointments getApptById(int apptId);
 
-    List<Appointments> getAllBookedApptsByDoctor(int userId);
+    List<Appointments> getAllBookedApptsByDoctor(String doctorName);
+
+    List<Appointments> getAllBookedApptsByPatient(String username);
 
     List <Appointments> getAllAvailableApptsByDoctor(int userId);
 
