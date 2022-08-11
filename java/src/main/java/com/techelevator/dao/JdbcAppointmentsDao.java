@@ -138,14 +138,14 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         Appointments appointment = new Appointments();
         appointment.setApptId(rs.getInt("appt_id"));
         appointment.setDoctorId(rs.getInt("doctor_id"));
+        appointment.setDoctorName(rs.getString("doctor_name"));
         appointment.setPatientId(rs.getInt("patient_id"));
+        appointment.setPatientName(rs.getString("patient_name"));
         appointment.setApptDate(rs.getDate("appt_date"));
         appointment.setApptTime(rs.getTime("appt_time"));
         appointment.setPurposeOfVisit(rs.getString("purpose_of_visit"));
         appointment.setRead(rs.getBoolean("is_read"));
         appointment.setAvailable(rs.getBoolean("is_available"));
-        appointment.setDoctorName(rs.getString("doctor_name"));
-        appointment.setPatientName(rs.getString("patient_name"));
         return appointment;
     }
 
