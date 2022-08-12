@@ -35,13 +35,13 @@ public class OfficeController {
         officeDao.updateOfficeInfo(office, id);
     }
 
-    @RequestMapping(path = "/{officeId}/update/add-doctor")
-    public void addNewDoctorToOffice(@PathVariable int officeId, int doctorId) {
+    @RequestMapping(path = "/{officeId}/update/add-doctor/{doctorId}", method = RequestMethod.POST)
+    public void addNewDoctorToOffice(@PathVariable int officeId, @PathVariable int doctorId) {
         officeDao.addDoctorToOffice(officeId, doctorId);
     }
 
-    @RequestMapping(path= "/{officeId}/update/remove-doctor")
-    public void removeDoctorFromCurrentOffice(@PathVariable int officeId, int doctorId) {
+    @RequestMapping(path= "/{officeId}/update/remove-doctor/{doctorId}", method = RequestMethod.DELETE)
+    public void removeDoctorFromCurrentOffice(@PathVariable int officeId, @PathVariable int doctorId) {
         officeDao.removeDoctorFromOffice(officeId, doctorId);
     }
 
