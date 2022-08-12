@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/appointments")
+@CrossOrigin(origins = "http://localhost:8080")
 @PreAuthorize("isAuthenticated()")
 public class AppointmentsController {
     private AppointmentsDao appointmentsDao;
@@ -29,8 +30,6 @@ public class AppointmentsController {
         return appointmentsDao.getApptById(id);
     }
 
-
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
     //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
@@ -38,19 +37,19 @@ public class AppointmentsController {
         return appointmentsDao.getAllBookedApptsByDoctor(username);
     }
 
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient-booked/{username}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByPatientList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByPatient(username);
     }
 
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    //@PreAuthorize("hasRole('PATIENT')")
-    @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
-    public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
-        return appointmentsDao.getAllAvailableApptsByDoctor(id);
-    }
+      //is this a duplicate of getAllBookedApptsByDoctorList ??
+//    @ResponseStatus(HttpStatus.FORBIDDEN)
+//    //@PreAuthorize("hasRole('PATIENT')")
+//    @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
+//    public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
+//        return appointmentsDao.getAllAvailableApptsByDoctor(id);
+//    }
 
     @PreAuthorize("permitAll()")
     @RequestMapping(path = "", method = RequestMethod.GET)

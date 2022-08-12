@@ -7,15 +7,15 @@ export default {
     },
 
     getDoctorsAppt(user) {
-        return axios.get(`/appointments/doctor/${user.username}`, user);
+        return axios.get(`/appointments/doctor/${user.username}`);
     },
 
     getPatientAppt(user) {
-        return axios.get(`/appointments/${user.username}`, user)
-    }
+        return axios.get(`/appointments/patient/${user.username}`, user);
+    },
 
-//   login(user) {
-//     return axios.post('/login', user)
-//   }
+    createAppt(appointment) {
+        return axios.post(`/new-appointment`, appointment);
+    }
 
 }

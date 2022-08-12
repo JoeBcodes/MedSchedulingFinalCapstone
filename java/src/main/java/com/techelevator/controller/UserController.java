@@ -2,16 +2,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
     @RequestMapping("/users")
     @RestController
     @PreAuthorize("isAuthenticated()")
+    @CrossOrigin(origins = "http://localhost:8080")
     public class UserController {
 
         private UserDao userDao;

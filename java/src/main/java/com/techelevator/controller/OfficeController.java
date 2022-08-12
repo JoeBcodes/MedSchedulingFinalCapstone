@@ -11,7 +11,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/office")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class OfficeController {
     private OfficeDao officeDao;

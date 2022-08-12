@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.JdbcReviewsDao;
 import com.techelevator.dao.ReviewsDao;
 import com.techelevator.model.Reviews;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -10,7 +11,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(path = "/reviews")
 public class ReviewsController {
 

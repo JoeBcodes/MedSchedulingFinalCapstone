@@ -20,7 +20,9 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    role: ''
+    role: '',
+    appointments: [],
+    selectedApptId: null
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -42,6 +44,12 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_APPTS(state, data) {
+      state.appointments = data;
+    },
+    SET_SELECTED_APPT(state, appointmentId) {
+      state.selectedApptId = appointmentId;
     }
   }
 })
