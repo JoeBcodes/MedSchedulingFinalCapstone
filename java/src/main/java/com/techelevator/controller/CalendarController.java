@@ -4,6 +4,7 @@ import com.techelevator.dao.JdbcCalendarDao;
 import com.techelevator.model.Calendar;
 import com.techelevator.model.User;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -13,6 +14,8 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/calendar")
+@PreAuthorize("isAuthenticated()")
+@CrossOrigin(origins = "http://localhost:8080")
 public class CalendarController {
 
     private CalendarDao dao;

@@ -4,16 +4,14 @@ import com.techelevator.dao.DoctorsDao;
 import com.techelevator.dao.JdbcDoctorsDao;
 import com.techelevator.model.Doctors;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 @RequestMapping("/doctors")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class DoctorsController {
 
