@@ -7,7 +7,7 @@ export default {
     },
 
     getDoctorsAppt(user) {
-        return axios.get(`/appointments/${user.username}`, user);
+        return axios.get(`/appointments/doctor/${user.username}`, user);
     },
 
     getPatientAppt(user) {
