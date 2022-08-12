@@ -31,7 +31,7 @@ public class AppointmentsController {
 
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @PreAuthorize("hasRole('DOCTOR')")
+    //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
     //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
     public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable String username, Principal principal) {
@@ -39,14 +39,14 @@ public class AppointmentsController {
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @PreAuthorize("hasRole('PATIENT')")
+    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient-booked/{username}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByPatientList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByPatient(username);
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @PreAuthorize("hasRole('PATIENT')")
+    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
         return appointmentsDao.getAllAvailableApptsByDoctor(id);
@@ -58,13 +58,13 @@ public class AppointmentsController {
         return appointmentsDao.getAllAvailableAppts();
     }
 
-    @PreAuthorize("hasRole('DOCTOR')")
+    //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/notifications", method = RequestMethod.GET)
     public List<Appointments> getUnreadApptsList() {
         return appointmentsDao.getUnreadAppts();
     }
 
-    @PreAuthorize("hasRole('PATIENT')")
+    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
     public void createNewAppt(@RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);

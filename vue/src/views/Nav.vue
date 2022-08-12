@@ -19,16 +19,12 @@ export default {
         };
   },
   computed: {
-      userRole() {
-          return 'patient';
-      },
-
       isDoctor() {
-        return this.userRole === 'doctor';
+        return this.$store.state.user.role === 'DOCTOR';
       },
 
       isPatient() {
-          return this.userRole === 'patient';
+          return this.$store.state.user.role === 'PATIENT';
       }
   }
 };
