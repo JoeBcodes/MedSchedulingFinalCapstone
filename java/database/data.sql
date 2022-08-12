@@ -16,9 +16,9 @@ VALUES (2, 'Monday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
 VALUES (2, 'Tuesday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
-VALUES (2, 'Wenesday', '08:00:00', '17:00:00');
+VALUES (2, 'Wednesday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
-VALUES (2, 'Thrusday', '08:00:00', '17:00:00');
+VALUES (2, 'Thursday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
 VALUES (2, 'Friday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
@@ -26,9 +26,9 @@ VALUES (3, 'Monday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
 VALUES (3, 'Tuesday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
-VALUES (3, 'Wenesday', '08:00:00', '17:00:00');
+VALUES (3, 'Wednesday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
-VALUES (3, 'Thrusday', '08:00:00', '17:00:00');
+VALUES (3, 'Thursday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time) 
 VALUES (3, 'Friday', '08:00:00', '17:00:00');
 
