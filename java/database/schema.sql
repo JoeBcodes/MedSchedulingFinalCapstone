@@ -13,6 +13,9 @@ CREATE TABLE users (
         phone varchar(15) NOT NULL,
         email varchar(100) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
+	
+	
+	
 );
 
 CREATE TABLE office (
