@@ -48,7 +48,7 @@ public class JdbcOfficeDao implements OfficeDao {
         String sql = "UPDATE office " +
                 "SET address = ?, phone = ?, start_hours = ?, end_hours = ?, hourly_rate = ? " +
                 "WHERE office_id = ?;";
-        jdbcTemplate.update(sql, office.getAddress(), office.getPhone(), office.getStartHours(), office.getEndHours(), office.getSpecialty(), officeId);
+        jdbcTemplate.update(sql, office.getAddress(), office.getPhone(), office.getStartHours(), office.getEndHours(), office.getHourlyRate(), officeId);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class JdbcOfficeDao implements OfficeDao {
     @Override
     public void removeDoctorFromOffice(int officeId, int doctorId) {
         String sql = "DELETE FROM doctors_in_office " +
-                "WHERE doctorId = ?; AND officeId = ?";
+                "WHERE doctor_Id = ? AND office_Id = ?";
         jdbcTemplate.update(sql, doctorId, officeId);
     }
 
