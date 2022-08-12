@@ -19,10 +19,6 @@ export default {
         };
   },
   computed: {
-      userRole() {
-          return 'patient';
-      },
-
       isDoctor() {
         return this.$store.state.user.role === 'DOCTOR';
       },
