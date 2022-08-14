@@ -36,7 +36,7 @@ public class Appointments {
         this.patientName = patientName;
     }
 
-
+c
     public int getApptId() {
         return apptId;
     }
