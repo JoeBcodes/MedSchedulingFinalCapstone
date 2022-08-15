@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
-//import store from '../store/index'  not in lecture final?
+import store from '../store/index' 
 import Appointments from '../views/Appointments.vue'
 import Calendar from '../views/Calendar.vue'
 import Office from '../views/Office.vue'
