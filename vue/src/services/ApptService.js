@@ -11,7 +11,11 @@ export default {
     },
 
     getPatientAppt(user) {
-        return axios.get(`/appointments/patient/${user.username}`, user);
+        return axios.get(`/appointments/patient-booked/${user.username}`, user);
+    },
+
+    getApptsByDoctorAndDate(doctorId, date) {
+        return axios.get(`/appointments/doctor/${doctorId}/date/${date}`);
     },
 
     createAppt(appointment) {

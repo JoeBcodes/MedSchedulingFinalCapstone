@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Appointments from '../views/Appointments.vue'
+import OfficeDetails from '../views/OfficeDetails.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,14 @@ const router = new Router({
       path: "/appointments",
       name: "appts",
       component: Appointments,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/office",
+      name: "office",
+      component: OfficeDetails,
       meta: {
         requiresAuth: true
       }
