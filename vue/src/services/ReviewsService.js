@@ -7,8 +7,9 @@ export default {
         return axios.get(`/reviews/office/${office.officeId}`);
     },
 
-    getAllDoctorReviews(doctors) {
-        return axios.get(`/reviews/doctor/${doctors.doctorId}`);
+    getAllDoctorReviews(doctorId) {
+        return axios.get(`/reviews/doctor/${doctorId}`);
+
     },
 
     getReviewById(reviews) {
