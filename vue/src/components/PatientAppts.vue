@@ -1,54 +1,60 @@
 <template>
-     <div id="apptList">
+    <div id="apptList">
+        <button v-on:click="showForm" id="bookAppt">Book New Appointment</button>
+        <appt-form v-if="isShown" />
+
         <div class="appointment" v-for="appointment in this.$store.state.appointments" v-bind:key="appointment.appt_id">
-            {{appointment.doctorName}}
+            {{appointment.patientName}}
             {{appointment.apptDate}}
             {{appointment.apptTime}}
-             {{appointment.purposeOfVisit}}
-             {{appointment.isAvailable}}
+            {{appointment.purposeOfVisit}}
         </div>
     </div>
 </template>
 
 <script>
 import ApptService from '../services/ApptService.js';
+import ApptForm from '../components/ApptForm.vue';
 
 export default {
-    name: "patient-appts",
+  components: { ApptForm },
+    name: "doctor-appts",
     data() {
         return {
             appointments: [],
-            appointment: {
-                //added doctorId:
-                //added isAvailable:
-                apptId: null,
-                doctorId: null,
-                patientId: null,
-                apptDate: '',
-                apptTime: '',
-                 isRead: null,
-                 isAvailable: null,
-                purpose: '',
-                doctorName: '',
-                patientName: ''
-                
-            }
+            appointment: {},
+            isShown: false
         }
     },
-  methods: {
+    methods: {
         retrieveAppts() {
-            ApptService.getDoctorsAppt(this.$store.state.user).then(response => {
+            ApptService.getPatientAppt(this.$store.state.user).then(response => {
                 this.$store.commit("SET_APPTS", response.data);
                 console.log(response);
             });
+        },
+        showForm() {
+            this.isShown = !this.isShown;
         }
     },
     created() {
             this.retrieveAppts();
-        }
+    }
 }
 </script>
 
-<style scoped>
+<style>
 
+#apptList {
+    margin:20px;
+}
+
+button#bookAppt {
+    padding: 10px;
+    font-size: 16px;
+    border-color: #89ABFD;
+}
+button#bookAppt:hover {
+    background-color: lightsteelblue;
+}
 </style>

@@ -13,8 +13,9 @@ export default {
         return axios.get(`/office/${officeId}`);
     },
 
-    updateOfficeInfo(SOMETHINGOFFICE) {
-        return axios.put(``)
+    updateOfficeInfo(office) {
+        console.log(office);
+        return axios.put(`office/${office.officeId}/update`, office);
     },
 
 
@@ -23,7 +24,7 @@ export default {
         return axios.post(`/${officeId}/update/add-doctor`, doctorId);
     },
 
-    removeDoctorFromOffice(officeId) {
+    removeDoctorFromOffice(officeId, doctorId) {
         return axios.delete(`/${officeId}/update/remove-doctor`, doctorId);
 
         

@@ -6,11 +6,15 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 //import store from '../store/index'  not in lecture final?
 import Appointments from '../views/Appointments.vue'
+<<<<<<< HEAD
 import Calendar from '../views/Calendar.vue'
 import Office from '../views/Office.vue'
 import Reviews from '../views/Reviews.vue'
 
 
+=======
+import OfficeDetails from '../views/OfficeDetails.vue'
+>>>>>>> 5b5706d2d6298abe2070f09c11c18f4b95da4265
 
 Vue.use(Router)
 

@@ -11,5 +11,9 @@ export default {
 
     listAllDoctorsByOfficeId(officeId) {
         return axios.get(`/doctors/${officeId}`);
+    },
+
+    getScheduleForDoctor(doctorId) {
+        return axios.get(`/calendar/${doctorId}`);
     }
 }

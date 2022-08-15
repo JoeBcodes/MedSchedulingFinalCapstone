@@ -21,7 +21,7 @@ public class JdbcDoctorsDao implements DoctorsDao {
         List<Doctors> doctors = new ArrayList<>();
         String sql = "SELECT u.user_id, u.first_name || ' ' || u.last_name AS doctor_name, " +
                 "dio.office_id, o.name, u.phone, u.email, o.specialty " +
-                "FROM user u" +
+                "FROM users u " +
                 "JOIN doctors_in_office dio " +
                 "ON u.user_id = dio.doctor_id " +
                 "JOIN office o " +
@@ -40,7 +40,7 @@ public class JdbcDoctorsDao implements DoctorsDao {
         List<Doctors> doctors = new ArrayList<>();
         String sql = "SELECT u.user_id, u.first_name || ' ' || u.last_name AS doctor_name, " +
                 "dio.office_id, o.name, u.phone, u.email, o.specialty " +
-                "FROM user u" +
+                "FROM users u " +
                 "JOIN doctors_in_office dio " +
                 "ON u.user_id = dio.doctor_id " +
                 "JOIN office o " +
