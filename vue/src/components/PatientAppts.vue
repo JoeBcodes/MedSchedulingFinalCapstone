@@ -18,7 +18,7 @@ import ApptForm from '../components/ApptForm.vue';
 
 export default {
   components: { ApptForm },
-    name: "doctor-appts",
+    name: "patient-appts",
     data() {
         return {
             appointments: [],
