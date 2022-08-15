@@ -74,8 +74,8 @@ const router = new Router({
       }
     },
     {
-      path: "/office-details",
-      name: "office-details",
+      path: "/office",
+      name: "office",
       component: OfficeDetails,
       meta: {
         requiresAuth: true

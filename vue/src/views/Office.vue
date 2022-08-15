@@ -1,5 +1,6 @@
 <template>
     <div>
+        <office-detail />
         <doctor-office v-if="isDoctor" />
         <patient-office v-if="isPatient" />
     </div>
@@ -8,9 +9,10 @@
 <script>
 import DoctorOffice from '../components/DoctorOffice.vue';
 import PatientOffice from '../components/PatientOffice.vue';
+import OfficeDetail from '../components/OfficeDetail.vue';
 
 export default {
-  components: { DoctorOffice, PatientOffice },
+  components: { DoctorOffice, PatientOffice, OfficeDetail },
   name: "office",
   computed: {
       isDoctor() {

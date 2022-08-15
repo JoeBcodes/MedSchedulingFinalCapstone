@@ -18,8 +18,6 @@ export default {
         return axios.put(`office/${office.officeId}/update`, office);
     },
 
-
-
     addDoctorToOffice(officeId, doctorId) {
         return axios.post(`/${officeId}/update/add-doctor`, doctorId);
     },
