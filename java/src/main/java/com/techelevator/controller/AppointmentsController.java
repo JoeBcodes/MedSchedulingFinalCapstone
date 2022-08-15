@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,6 @@ public class AppointmentsController {
 
     //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
-    //public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable int id) {
     public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByDoctor(username);
     }
@@ -41,6 +41,11 @@ public class AppointmentsController {
     @RequestMapping(path = "/patient-booked/{username}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByPatientList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByPatient(username);
+    }
+
+    @RequestMapping(path = "/doctor/{id}/date/{date}", method = RequestMethod.GET)
+    public List<Appointments> apptsByDoctorAndDate(@PathVariable int id, Date date) {
+        return appointmentsDao.getApptsByDoctorAndDate(id, date);
     }
 
       //is this a duplicate of getAllBookedApptsByDoctorList ??
