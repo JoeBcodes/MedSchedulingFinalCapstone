@@ -1,6 +1,9 @@
 <template>
-    <div id="apptList">
-        <div class="appointment">
+
+<!--print out list of drs in Office-->
+
+    <div id="officeDetailsList">
+        <div class="office-details">
             {{office.name}}
             {{office.address}}
             {{office.phone}}
@@ -26,6 +29,9 @@ export default {
             });
         }
     },
+
+    //list of all drs in this office
+    //reviews
     computed: {
         office() { return this.$store.state.office }
     },

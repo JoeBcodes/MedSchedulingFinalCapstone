@@ -7,7 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index' 
 import Appointments from '../views/Appointments.vue'
 import Calendar from '../views/Calendar.vue'
-import Office from '../views/Office.vue'
+import OfficeDetails from '../views/OfficeDetails.vue'
 import Reviews from '../views/Reviews.vue'
 
 Vue.use(Router)
@@ -74,9 +74,9 @@ const router = new Router({
       }
     },
     {
-      path: "/office",
-      name: "office",
-      component: Office,
+      path: "/office-details",
+      name: "office-details",
+      component: OfficeDetails,
       meta: {
         requiresAuth: true
       }

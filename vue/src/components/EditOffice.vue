@@ -18,6 +18,7 @@
             <label for="hourlyRate">Hourly rate of services: </label>
             <input type="text" name="hourlyRate" v-model="office.hourlyRate" />
             <input type="submit" name="Update" v-on:click.prevent="editOfficeDetail" />
+
         </form>
     </div>
 </template>
