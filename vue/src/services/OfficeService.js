@@ -18,11 +18,17 @@ export default {
         return axios.put(`office/${office.officeId}/update`, office);
     },
 
+
+
     addDoctorToOffice(officeId, doctorId) {
         return axios.post(`/${officeId}/update/add-doctor`, doctorId);
     },
 
     removeDoctorFromOffice(officeId, doctorId) {
         return axios.delete(`/${officeId}/update/remove-doctor`, doctorId);
+
+        
+    //removeDoctorFromOffice(officeId, doctorId) {
+       // return axios.delete(`/${officeId}/update/remove-doctor/${doctorId}`); possible change?
     }
 }

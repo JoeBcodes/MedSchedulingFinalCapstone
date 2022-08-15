@@ -1,7 +1,7 @@
 <template>
     <div id="userNav">
         <ul>
-            <li v-if="isDoctor">
+            <li v-if="isDoctor">      
                 <router-link :to="{ name: 'appts'}">
                     View Appointments (D)
                 </router-link> 
@@ -9,6 +9,16 @@
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'office'}">
                     Office Info (D)
+                </router-link>
+            </li>
+            <li v-if="isDoctor">
+                <router-link :to="{ name: 'calendar'}">
+                    Calendar Info (D)
+                </router-link>
+            </li>
+            <li v-if="isDoctor">
+                <router-link :to="{ name: 'reviews'}">
+                    Reviews (D)
                 </router-link>
             </li>
             <li v-if="isPatient">
@@ -19,6 +29,16 @@
             <li v-if="isPatient">
                 <router-link :to="{ name: 'office'}">
                     Office Info (P)
+                </router-link>
+            </li>
+            <!-- <li v-if="isPatient">
+                <router-link :to="{ name: 'calendar'}">
+                    Calendar Info (P)
+                </router-link>
+            </li> -->
+            <li v-if="isPatient">
+                <router-link :to="{ name: 'reviews'}">
+                    Reviews (P)
                 </router-link>
             </li>
         </ul>

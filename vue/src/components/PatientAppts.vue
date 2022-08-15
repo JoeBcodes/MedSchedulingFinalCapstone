@@ -1,6 +1,5 @@
 <template>
     <div id="apptList">
-
         <button v-on:click="showForm" id="bookAppt">Book New Appointment</button>
         <appt-form v-if="isShown" />
 
@@ -58,5 +57,4 @@ button#bookAppt {
 button#bookAppt:hover {
     background-color: lightsteelblue;
 }
-
 </style>

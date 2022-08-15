@@ -4,9 +4,11 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
-import store from '../store/index'
+import store from '../store/index' 
 import Appointments from '../views/Appointments.vue'
-import OfficeDetails from '../views/OfficeDetails.vue'
+import Calendar from '../views/Calendar.vue'
+import Office from '../views/Office.vue'
+import Reviews from '../views/Reviews.vue'
 
 Vue.use(Router)
 
@@ -64,9 +66,25 @@ const router = new Router({
       }
     },
     {
+      path: "/calendar",
+      name: "calendar",
+      component: Calendar,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/office",
       name: "office",
-      component: OfficeDetails,
+      component: Office,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/reviews",
+      name: "reviews",
+      component: Reviews,
       meta: {
         requiresAuth: true
       }

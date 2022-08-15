@@ -54,6 +54,17 @@ export default new Vuex.Store({
     },
     SET_SELECTED_APPT(state, appointmentId) {
       state.selectedApptId = appointmentId;
-    }
+    },
+
+    // SET_CALENDAR(state, data) {
+    //   state.calendars = data;
+    // },
+    // SET_OFFICE(state, data) {
+    //   state.offices = data;
+    // },
+    // SET_REVIEWS(state, data) {
+    //   state.reviews = data;
+    // }
+
   }
 })

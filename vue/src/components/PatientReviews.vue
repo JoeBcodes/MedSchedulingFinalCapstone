@@ -16,7 +16,7 @@
 import ReviewsService from '../services/ReviewsService.js';
 
 export default {
-    name: "doctor-reviews",
+    name: "patient-reviews",
     data() {
         return {
             reviews: [],
@@ -34,7 +34,7 @@ export default {
             }
         }
     },
-    
+   
   methods: {
         retrieveReviews() {
             ReviewsService.getDoctorsReviews(this.$store.state.user).then(response => {
@@ -47,6 +47,7 @@ export default {
             this.retrieveReviews();
         }
 }
+
 </script>
 
 

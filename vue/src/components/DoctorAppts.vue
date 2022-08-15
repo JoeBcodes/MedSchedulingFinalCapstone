@@ -5,6 +5,8 @@
             {{appointment.apptDate}}
             {{appointment.apptTime}}
             {{appointment.purposeOfVisit}}
+             {{appointment.isRead}}
+             {{appointment.isAvailable}}
         </div>
     </div>
 </template>
@@ -18,14 +20,19 @@ export default {
         return {
             appointments: [],
             appointment: {
+                //added doctorId:
+                //added isAvailable:
                 apptId: null,
+                doctorId: null,
                 patientId: null,
                 apptDate: '',
                 apptTime: '',
+                 isRead: null,
+                 isAvailable: null,
                 purpose: '',
                 doctorName: '',
-                patientName: '',
-                isRead: null
+                patientName: ''
+                
             }
         }
     },
@@ -50,3 +57,8 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+
+</style>
