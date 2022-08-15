@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -97,6 +98,25 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
+    //find all by specific dr, should only be visible to patients
+    @Override
+    public List <Appointments> getApptsByDoctorAndDate(int doctorId, Date date) {
+        List <Appointments> appointments = new ArrayList<>();
+        String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
+                "FROM appointments a " +
+                "JOIN users du " +
+                "ON a.doctor_id = du.user_id " +
+                "JOIN users pu " +
+                "ON a.patient_id = pu.user_id " +
+                "WHERE doctor_id = ? AND appt_date = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, date);
+        while (results.next()) {
+            Appointments appointment = mapRowToAppointments(results);
+            appointments.add(appointment);
+        }
+        return appointments;
+    }
+
 
     //find all regardless of Dr, only viewable by patient
     @Override
@@ -118,7 +138,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         }
         return appointments;
     }
-
 
 
     @Override

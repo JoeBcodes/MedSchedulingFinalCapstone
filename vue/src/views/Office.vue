@@ -1,17 +1,17 @@
 <template>
     <div>
-        <office-detail />
-        <edit-office v-if="isDoctor" />
+        <doctor-office v-if="isDoctor" />
+        <patient-office v-if="isPatient" />
     </div>
 </template>
 
 <script>
-import OfficeDetail from '../components/OfficeDetail.vue';
-import EditOffice from '../components/EditOffice.vue';
+import DoctorOffice from '../components/DoctorOffice.vue';
+import PatientOffice from '../components/PatientOffice.vue';
 
 export default {
-  components: { OfficeDetail, EditOffice },
-  name: "appts",
+  components: { DoctorOffice, PatientOffice },
+  name: "office",
   computed: {
       isDoctor() {
         return this.$store.state.user.role === 'DOCTOR';

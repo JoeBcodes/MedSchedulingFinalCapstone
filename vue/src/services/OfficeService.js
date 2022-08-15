@@ -13,15 +13,22 @@ export default {
         return axios.get(`/office/${officeId}`);
     },
 
-    updateOfficeInfo(SOMETHINGOFFICE) {
-        return axios.put(``)
+    updateOfficeInfo(office) {
+        console.log(office);
+        return axios.put(`office/${office.officeId}/update`, office);
     },
+
+
 
     addDoctorToOffice(officeId, doctorId) {
         return axios.post(`/${officeId}/update/add-doctor`, doctorId);
     },
 
-    removeDoctorFromOffice(officeId) {
+    removeDoctorFromOffice(officeId, doctorId) {
         return axios.delete(`/${officeId}/update/remove-doctor`, doctorId);
+
+        
+    //removeDoctorFromOffice(officeId, doctorId) {
+       // return axios.delete(`/${officeId}/update/remove-doctor/${doctorId}`); possible change?
     }
 }

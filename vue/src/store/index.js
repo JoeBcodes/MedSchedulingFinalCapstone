@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     role: '',
     appointments: [],
+    office: [],
     selectedApptId: null
   },
   mutations: {
@@ -48,8 +49,22 @@ export default new Vuex.Store({
     SET_APPTS(state, data) {
       state.appointments = data;
     },
+    SET_OFFICE(state, data) {
+      state.office = data;
+    },
     SET_SELECTED_APPT(state, appointmentId) {
       state.selectedApptId = appointmentId;
-    }
+    },
+
+    // SET_CALENDAR(state, data) {
+    //   state.calendars = data;
+    // },
+    // SET_OFFICE(state, data) {
+    //   state.offices = data;
+    // },
+    // SET_REVIEWS(state, data) {
+    //   state.reviews = data;
+    // }
+
   }
 })
