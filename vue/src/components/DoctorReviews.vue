@@ -1,14 +1,18 @@
 <template>
-      <div id="reviewsList">
-        <div class="reviews" v-for="review in this.$store.state.reviews" v-bind:key="review.review_id">
-            {{reviews.reviewerName}}
-            {{reviews.reviewDate}}
-            {{reviews.officeName}}
-            {{reviews.doctorName}}
-             {{reviews.reviewDesc}}
-              {{reviews.rating}}
-               {{reviews.doctorReply}}
-        </div>
+    <div id="doctorList">
+            
+            <p>My Reviews</p>
+            
+            <div class="reviewList" v-for="review in reviews" v-bind:key="review.reviewId">
+                
+                    <div class="reviewRow">
+                        {{review.reviewDesc}}<br />
+                        <textarea v-if="!review.doctorReply" v-model.lazy="updatedReview.doctorReply" placeholder="Leave reply here..."></textarea><br />
+                        <button v-if="!review.doctorReply" class="leaveReplyButton" v-on:click="addDoctorReply(updatedReview, review.reviewId)">Submit Reply</button>
+                    </div>
+                
+            </div>
+
     </div>
 </template>
 
@@ -31,20 +35,35 @@ export default {
                 reviewDesc: '',
                 rating: null,
                 doctorReply: ''
-            }
+            },
+            updatedReview: {
+                reviewId: null,
+                doctorReply: ''
+            },
+            test: '',
+            doctors: [],
+            isShown: false
         }
     },
     
   methods: {
-        retrieveReviews() {
-            ReviewsService.getDoctorsReviews(this.$store.state.user).then(response => {
-                this.$store.commit("SET_REVIEWS", response.data);
+        retrieveReviews(doctorId) {
+            ReviewsService.getAllDoctorReviews(doctorId).then(response => {
+                this.reviews = response.data;
                 console.log(response);
             });
+        },
+        showReview() {
+            this.isShown = !this.isShown;
+        },
+        addDoctorReply(updatedReview, reviewId) {
+            this.updatedReview.reviewId = reviewId;
+            ReviewsService.updateWithDoctorReply(updatedReview);
+            setTimeout(function(){window.location.reload();},1000);
         }
     },
     created() {
-            this.retrieveReviews();
+            this.retrieveReviews(this.$store.state.user.userId);
         }
 }
 </script>

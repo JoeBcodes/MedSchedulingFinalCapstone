@@ -31,11 +31,6 @@
                     Office Info (P)
                 </router-link>
             </li>
-            <!-- <li v-if="isPatient">
-                <router-link :to="{ name: 'calendar'}">
-                    Calendar Info (P)
-                </router-link>
-            </li> -->
             <li v-if="isPatient">
                 <router-link :to="{ name: 'reviews'}">
                     Reviews (P)

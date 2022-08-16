@@ -1,19 +1,28 @@
 <template>
-      <div id="reviewsList">
-        <div class="reviews" v-for="review in this.$store.state.reviews" v-bind:key="review.review_id">
-            {{reviews.reviewerName}}
-            {{reviews.reviewDate}}
-            {{reviews.officeName}}
-            {{reviews.doctorName}}
-             {{reviews.reviewDesc}}
-              {{reviews.rating}}
-               {{reviews.doctorReply}}
+    <div id="doctorList">
+        <select v-model="selectedDoctor" v-on:change="retrieveReviews(selectedDoctor)">
+            <option value="0">-Please select a doctor-</option>
+            <option v-for="doctor in doctors" v-bind:key="doctor.doctorId" v-bind:value="doctor.doctorId">{{doctor.doctorName}}</option>
+        </select>
+            
+        <div class="individualReview">
+            <div v-for="review in reviews" v-bind:key="review.reviewId">
+                
+                {{review.reviewDesc}}
+                {{review.reviewRating}}
+                {{review.reviewDate}}
+                {{review.reviewerName}}
+                {{review.doctorReply}}
+
+            </div>
         </div>
+
     </div>
 </template>
 
 <script>
 import ReviewsService from '../services/ReviewsService.js';
+import DoctorService from '../services/DoctorService.js';
 
 export default {
     name: "patient-reviews",
@@ -31,20 +40,33 @@ export default {
                 reviewDesc: '',
                 rating: null,
                 doctorReply: ''
-            }
+            },
+            doctors: [],
+            selectedDoctor: 0,
+            isShown: false
         }
     },
-   
+    
   methods: {
-        retrieveReviews() {
-            ReviewsService.getDoctorsReviews(this.$store.state.user).then(response => {
-                this.$store.commit("SET_REVIEWS", response.data);
+      retrieveAllDoctors() {
+          DoctorService.listAllDoctors().then(response => {
+              this.doctors = response.data;
+              console.log(response);
+          })
+      },
+        retrieveReviews(doctorId) {
+            ReviewsService.getAllDoctorReviews(doctorId).then(response => {
+                this.reviews = response.data;
                 console.log(response);
             });
+        },
+        showReview() {
+            this.isShown = !this.isShown;
         }
     },
     created() {
-            this.retrieveReviews();
+            //this.retrieveReviews(2);
+            this.retrieveAllDoctors();
         }
 }
 
