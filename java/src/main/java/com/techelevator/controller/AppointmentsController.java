@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
@@ -70,7 +71,7 @@ public class AppointmentsController {
 
     //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
-    public void createNewAppt(@RequestBody Appointments appointment) {
+    public void createNewAppt(@Valid @RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
     }
 

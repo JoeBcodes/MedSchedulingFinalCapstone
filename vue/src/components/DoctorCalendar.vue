@@ -1,11 +1,42 @@
 <template>
-        <div id="calendarList">
-        <div class="calendar" v-for="calendar in this.$store.state.calendars" v-bind:key="calendar.calendar_id">
-            {{calendar.patientName}}
-            {{calendar.dayOfTheWeek}}
-            {{calendar.startTime}}
-            {{calendar.endTime}}
+    <div id="calendarList">
+        <div class="calendar">
+            <table>
+                <tr>
+                    <th>Day of the week</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Remove</th>
+                </tr>
+                <tr v-for="calendar in this.$store.state.calendars" v-bind:key="calendar.calendar_id">
+                    <td>{{calendar.dayOfTheWeek}}</td>
+                    <td>{{calendar.startTime}}</td>
+                    <td>{{calendar.endTime}}</td>
+                    <td class="deleteBtn"><a href="" v-on:click="deleteCalendarEntry(calendar.calendarId)"><img src="../../public/pill_delete.png" /></a></td>
+                </tr>
+            </table>
         </div>
+        <form>
+            <label>Day of the Week:</label>
+            <select v-model="calendar.dayOfTheWeek">
+                <option value="0">- Please select a day -</option>
+                <option>Sunday</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+            </select>
+
+            <label>Start Time:</label>
+            <input type="time" v-model="calendar.startTime" />
+
+            <label>End Time:</label>
+            <input type="time" v-model="calendar.endTime" />
+
+            <input type="submit" value="Enter Times" v-on:click.prevent="addCalendarItem" />
+        </form>
     </div>
 </template>
 
@@ -18,29 +49,66 @@ export default {
         return {
             calendars: [],
             calendar: {
-                calendarId: null,
                 doctorId: null,
-                dayOfTheWeek: '',
-                startTime: '',
-                endTime: '',
+                dayOfTheWeek: '0',
+                startTime: '09:00',
+                endTime: '17:00',
             }
         }
     },
  methods: {
-        retrieveCalendars() {
-            CalendarService.getDoctorsCalendar(this.$store.state.user).then(response => {
+        retrieveCalendars(doctorId) {
+            CalendarService.getCalendarList(doctorId).then(response => {
                 this.$store.commit("SET_CALENDAR", response.data);
                 console.log(response);
             });
+        },
+        addCalendarItem() {
+            this.calendar.doctorId = this.$store.state.user.userId;
+            this.calendar.startTime = this.calendar.startTime + ":00";
+            this.calendar.endTime = this.calendar.endTime + ":00";
+            CalendarService.createCalendar(this.calendar).then(response => {
+                if (response.status === 200) {
+                    this.retrieveCalendars(this.$store.state.user.userId);
+                    this.calendar.dayOfTheWeek = '0';
+                    this.calendar.startTime = '';
+                    this.calendar.endTime = '';
+                }
+            });
+
+        },
+        deleteCalendarEntry(reviewId) {
+            CalendarService.deleteCalendar(reviewId);
         }
     },
     created() {
-            this.retrieveCalendars();
+            this.retrieveCalendars(this.$store.state.user.userId);
         }
 }
 </script>
 
 
 <style scoped>
-
+input {
+    font-size:20px;
+}
+.deleteBtn {
+    text-align: center;
+    vertical-align: middle;
+    width:30px;
+    height: 30px;
+}
+.deleteBtn a {
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    vertical-align: middle;
+}
+.deleteBtn a:hover {
+    background: rgba(240, 128, 128, 0.534);
+}
+.deleteBtn img {
+    width: 20px;
+    vertical-align: middle;
+}
 </style>
