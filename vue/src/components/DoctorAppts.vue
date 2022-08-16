@@ -4,25 +4,25 @@
         
         <h3>Upcoming Appointments</h3>
         <div class="appointment">
-        <table id="apptTable">    
+        <table class="apptTable">    
             <tr>
                 <th>Patient Name</th>
                 <th>Date &amp; Time</th>
                 <th>Purpose of Visit</th>
                 <th></th>
             </tr>
-            <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id">
+            <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id" :class="{ 'notRead' : !appointment.read}">
                 <td>{{appointment.patientName}}</td>
                 <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
                 <td>{{appointment.purposeOfVisit}}</td>
-                <td class="buttonColumn"><button v-if="appointment.read === false">Mark as Seen</button></td>
+                <td class="buttonColumn"><button v-if="appointment.read === false" v-on:click="appointment.read = true">Mark as Seen</button></td>
             </tr>
         </table>
         </div>
 
         <h3>Past Appointments</h3>
         <div class="appointment">
-        <table id="apptTable">    
+        <table class="apptTable">    
             <tr>
                 <th>Patient Name</th>
                 <th>Date &amp; Time</th>
@@ -33,7 +33,7 @@
                 <td>{{appointment.patientName}}</td>
                 <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
                 <td>{{appointment.purposeOfVisit}}</td>
-                <td class="buttonColumn"><button v-if="appointment.read === false">Mark as Seen</button></td>
+                <td class="buttonColumn"></td>
             </tr>
         </table>
         </div>
@@ -89,6 +89,12 @@ export default {
             this.upcomingAppointments = this.$store.state.appointments.filter(appointment => {
                 return today >= appointment;
             });
+        },
+        isRead(appointment) {
+            if (appointment.read === true) {
+                return true;
+            }
+            else {return false;}
         }
     },
     created() {
@@ -99,12 +105,12 @@ export default {
 
 
 <style>
-#apptTable {
+.apptTable {
     text-align: left;
     border-collapse: collapse;
-    width:80%;
+    width:90%;
 }
-#apptTable td, th {
+.apptTable td, th {
     padding:10px 50px 10px 5px;
     border:none;
 }
@@ -112,7 +118,15 @@ export default {
     width: 200px;
     text-align: right;
 }
-#apptTable tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: #f1f1f1d8;
+}
+tr.notRead {
+    background-color: lemonchiffon;
+    font-weight:bold;
+    border:1px solid rgb(255, 255, 255);
+}
+tr.notRead:hover {
+    background-color: rgb(255, 247, 176);
 }
 </style>

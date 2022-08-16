@@ -1,7 +1,8 @@
 <template>
     <div id="calendarList">
         <div class="calendar">
-            <table>
+            <h2>Current Schedule</h2>
+            <table id="availCalendar">
                 <tr>
                     <th>Day of the week</th>
                     <th>Start Time</th>
@@ -16,7 +17,9 @@
                 </tr>
             </table>
         </div>
+        <h2>Add available hours by day</h2>
         <form>
+            <div class="calendarFormItem">
             <label>Day of the Week:</label>
             <select v-model="calendar.dayOfTheWeek">
                 <option value="0">- Please select a day -</option>
@@ -28,14 +31,16 @@
                 <option>Friday</option>
                 <option>Saturday</option>
             </select>
-
+            </div>
+            <div class="calendarFormItem">
             <label>Start Time:</label>
             <input type="time" v-model="calendar.startTime" />
-
+            </div>
+            <div class="calendarFormItem">
             <label>End Time:</label>
             <input type="time" v-model="calendar.endTime" />
-
-            <input type="submit" value="Enter Times" v-on:click.prevent="addCalendarItem" />
+            </div>
+            <input id="subBtn" type="submit" value="Enter Times" v-on:click.prevent="addCalendarItem" />
         </form>
     </div>
 </template>
@@ -89,8 +94,21 @@ export default {
 
 
 <style scoped>
+#availCalendar {
+    border-collapse: collapse;
+}
+#availCalendar td {
+    padding:10px;
+}
+.calendarFormItem {
+    display: inline-block;
+    margin:0 20px;
+}
 input {
     font-size:20px;
+}
+#subBtn {
+    margin: 20px;
 }
 .deleteBtn {
     text-align: center;
