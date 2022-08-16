@@ -5,7 +5,14 @@ INSERT INTO users (username, password_hash, role, first_name, last_name, phone, 
 INSERT INTO users (username, password_hash, role, first_name, last_name, phone, email) VALUES ('joebaca', '$2a$10$bXqGw2RQ2XaihhIwe5lxkeSE08Sreg9AbVZCWRowx1/u79Hywkq/W', 'DOCTOR', 'Joe', 'Baca', '222-222-2222', 'joe.baca@gmail.com');
 INSERT INTO users (username, password_hash, role, first_name, last_name, phone, email) VALUES ('joywang', '$2a$10$UYqu4oyUTFnkPXbwHuoy2ONXvoJDmV2zIiiu7VtaSK04uguy.Jevm', 'PATIENT', 'Joy', 'Wang', '333-333-3333', 'joy.wang@gmail.com');
 INSERT INTO users (username, password_hash, role, first_name, last_name, phone, email) VALUES ('rickprentice', '$2a$10$dYI9MPWnZQjWyiR8KQdp8e35o4Bh4eil/UmcWtjMD9s35FxyLX3G.', 'PATIENT', 'Rick', 'Prentice', '444-444-4444', 'rick.prentice@gmail.com');
+<<<<<<< HEAD
 SELECT * FROM users;
+=======
+
+SELECT * FROM users;
+
+
+>>>>>>> b54b2fb825ce8beadc568dfcfc5c882422348ff1
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
 VALUES (2, 'Monday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
@@ -77,7 +84,11 @@ SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name
                 JOIN users pu
                 ON a.patient_id = pu.user_id
                 WHERE is_read = false;
+<<<<<<< HEAD
 COMMIT TRANSACTION;
 
 
 
+=======
+COMMIT TRANSACTION;
+>>>>>>> b54b2fb825ce8beadc568dfcfc5c882422348ff1

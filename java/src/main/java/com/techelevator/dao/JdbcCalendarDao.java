@@ -55,6 +55,13 @@ public class JdbcCalendarDao implements CalendarDao {
                 calendar.getStartTime(), calendar.getEndTime());
     }
 
+    @Override
+    public void deleteCalendar(int calendarId) {
+        String sql = "DELETE from calendar " +
+                "WHERE calendar_id = ?;";
+        jdbcTemplate.update(sql, calendarId);
+    }
+
     private Calendar mapRowToCalendar(SqlRowSet rs) {
         Calendar calendar = new Calendar();
         calendar.setCalendarId(rs.getInt("calendar_id"));

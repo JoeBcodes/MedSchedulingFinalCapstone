@@ -30,13 +30,18 @@ public class CalendarController {
     }
 
     @RequestMapping(path = "", method = RequestMethod.PUT)
-    public  void updateCalendarByDoctorId(@RequestBody Calendar calendar) {
+    public void updateCalendarByDoctorId(@RequestBody Calendar calendar) {
         dao.updateCalendar(calendar);
     }
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     public void createCalendarByDoctorId(@RequestBody Calendar calendar) {
          dao.createCalendar(calendar);
+    }
+
+    @RequestMapping(path = "{calendarId}/delete", method = RequestMethod.DELETE)
+    public void deleteExistingCalendarById(@PathVariable int calendarId) {
+        dao.deleteCalendar(calendarId);
     }
 
 

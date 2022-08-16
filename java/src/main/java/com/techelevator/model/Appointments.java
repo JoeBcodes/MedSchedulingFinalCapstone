@@ -9,7 +9,7 @@ public class Appointments {
     //change to userId
     private int doctorId;
     private int patientId;
-    private Date apptDate;
+    private String apptDate;
     private Time apptTime;
     private String purposeOfVisit;
     private boolean isRead;
@@ -22,7 +22,7 @@ public class Appointments {
 
     ;
 
-    public Appointments(int apptId, int doctorId, int patientId, Date apptDate, Time apptTime, String purposeOfVisit,
+    public Appointments(int apptId, int doctorId, int patientId, String apptDate, Time apptTime, String purposeOfVisit,
                         boolean isRead, boolean isAvailable, String doctorName, String patientName) {
         this.apptId = apptId;
         this.doctorId = doctorId;
@@ -61,11 +61,11 @@ public class Appointments {
         this.patientId = patientId;
     }
 
-    public Date getApptDate() {
+    public String getApptDate() {
         return apptDate;
     }
 
-    public void setApptDate(Date apptDate) {
+    public void setApptDate(String apptDate) {
         this.apptDate = apptDate;
     }
 
