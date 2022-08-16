@@ -25,6 +25,8 @@ import userNav from '@/views/Nav.vue';
 export default {
   components: {
     userNav
+  },
+  methods: {
   }
 }
 
@@ -76,7 +78,7 @@ html, body, #app {
 #main {
   position: relative;
   grid-area: main;
-  margin-left:20px;
+  padding:20px;
 }
 
 #logout {

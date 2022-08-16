@@ -44,7 +44,7 @@ public class AppointmentsController {
     }
 
     @RequestMapping(path = "/doctor/{id}/date/{date}", method = RequestMethod.GET)
-    public List<Appointments> apptsByDoctorAndDate(@PathVariable int id, Date date) {
+    public List<Appointments> apptsByDoctorAndDate(@PathVariable int id, @PathVariable String date) {
         return appointmentsDao.getApptsByDoctorAndDate(id, date);
     }
 

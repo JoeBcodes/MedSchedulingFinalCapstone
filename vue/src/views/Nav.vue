@@ -66,7 +66,6 @@ export default {
 <style>
 
 ul li {
-    display:block;
     height:75px;
     background-color: lightsteelblue;
     border:1px grey solid;
@@ -77,8 +76,8 @@ ul li:hover {
 ul li a {
     text-decoration: none;
     color:white;
-    display: block;
-    height: 100%;
+    padding:20px;
+    width: 100%;
 }
 
 </style>
