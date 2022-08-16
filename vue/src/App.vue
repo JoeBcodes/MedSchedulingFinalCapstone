@@ -2,7 +2,8 @@
   <div id="app">
     <div id="header">
       <img src="../public/clearLogo.png" alt="Medical App logo" id="logo" />
-      <p id="header-text"> Welcome to Medical Scheduling </p>
+      <p id="header-text"> Medical Scheduling </p>
+      <img src="../public/jr-logo.jpg" alt="J R Group logo" id="jr-group" />
     </div>
       
     <div id="nav">
@@ -52,16 +53,30 @@ html, body, #app {
 
 #header {
   width:100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #219ebc;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  background-image: linear-gradient(to right, rgba(2,48,71,0.25), rgba(2,48,71,1));
   grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 1fr 312.53px;
 }
 
 #logo {
-  height: 100%;
-  padding-left: 5em;
-  
+  width: 90px;
+  padding-left: 80px;
+  padding-top: 5px;
+  vertical-align: bottom;
+
+}
+
+#jr-group {
+  height: 100px;
+  text-align: right;
+}
+
+#header-text {
+  font-size: 30px;
+  color: white;
 }
 
 #nav {
