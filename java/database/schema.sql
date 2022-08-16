@@ -36,7 +36,7 @@ CREATE TABLE appointments (
 	appt_id SERIAL,
 	doctor_id int NOT NULL,
 	patient_id int NOT NULL,
-	appt_date date NOT NULL,
+	appt_date varchar(10) NOT NULL,
 	appt_time time NOT NULL,
 	purpose_of_visit varchar(50) NOT NULL,
 	is_read boolean NOT NULL,

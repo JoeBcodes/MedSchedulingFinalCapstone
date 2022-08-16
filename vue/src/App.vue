@@ -14,7 +14,7 @@
     </div>
 
     <div id="main">
-      <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></div>
+      <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout {{this.$store.state.user.firstName}} {{this.$store.state.user.lastName}}</router-link></div>
       <router-view />
     </div>
 

@@ -31,6 +31,11 @@ public class OfficeController {
         return officeDao.getAllOffices();
     }
 
+    @RequestMapping(path = "/doctor/{doctorId}", method = RequestMethod.GET)
+    public int getOfficeIdByDoctorId(@PathVariable int doctorId) {
+        return officeDao.getOfficeIdByDoctorId(doctorId);
+    }
+
     @RequestMapping(path = "/{id}/update", method = RequestMethod.PUT)
     public void updateInfoByOfficeId(@Valid @RequestBody Office office, @PathVariable int id) {
         officeDao.updateOfficeInfo(office, id);
