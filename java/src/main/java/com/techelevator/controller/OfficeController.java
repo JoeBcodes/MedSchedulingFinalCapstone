@@ -46,4 +46,9 @@ public class OfficeController {
         officeDao.removeDoctorFromOffice(officeId, doctorId);
     }
 
+    @RequestMapping(path = "/{officeId}/update/update-doctor-office/{doctorId}", method =RequestMethod.PUT)
+    public void updateCurrentOfficeOfDoctor(@PathVariable int officeId, @PathVariable int doctorId) {
+        officeDao.updateDoctorOffice(officeId, doctorId);
+    }
+
 }
