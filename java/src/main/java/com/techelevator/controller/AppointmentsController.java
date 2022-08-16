@@ -75,6 +75,9 @@ public class AppointmentsController {
         appointmentsDao.createAppt(appointment);
     }
 
-
+    @RequestMapping(path = "/{apptId}/mark-read", method = RequestMethod.PUT)
+    public void markRead(@PathVariable int apptId) {
+        appointmentsDao.markApptRead(apptId);
+    }
 
 }
