@@ -11,4 +11,5 @@ public interface OfficeDao {
     void addDoctorToOffice(int officeId, int doctorId);
     void updateDoctorOffice(int officeId, int doctorId);
     void removeDoctorFromOffice(int officeId, int doctorId);
+    int getOfficeIdByDoctorId(int doctorId);
 }
