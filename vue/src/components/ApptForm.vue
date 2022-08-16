@@ -56,9 +56,12 @@ export default {
       selectedDoctorId: 0,
       appointment: {
         doctorId: 0,
+        patientId: 0,
         apptDate: new Date(),
         apptTime: '',
         purposeOfVisit: '',
+        read: false,
+        available: false
       },
       availableDays: [],
       bookedApptsByDate: [],
@@ -102,11 +105,18 @@ export default {
   },
   methods: {
       bookAppointment() {
-        ApptService.createAppt({
-          ...this.appointment,
-          date: this.appointment.apptDate.toISOString().split('T')[0]
-        });
-        console.log(this.date);
+        this.appointment.apptDate = this.appointment.apptDate.toISOString().split('T')[0];
+        this.appointment.patientId = this.$store.state.user.userId;
+        ApptService.createAppt(this.appointment);
+        location.reload(true);
+
+
+
+
+        //   {
+        //   // ...this.appointment,
+        //   // date: this.appointment.apptDate.toISOString().split('T')[0]
+        // });
       },
       getOfficeList() {
           OfficeService.getAllOffices().then(response => {

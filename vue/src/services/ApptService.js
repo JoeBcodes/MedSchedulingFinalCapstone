@@ -19,7 +19,7 @@ export default {
     },
 
     createAppt(appointment) {
-        return axios.post(`/new-appointment`, appointment);
+        return axios.post(`appointments/new-appointment`, appointment);
     }
 
 }

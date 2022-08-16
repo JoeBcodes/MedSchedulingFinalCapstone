@@ -13,5 +13,9 @@ export default {
   createCalendar(calendar) {
     return axios.post(`/calendar`, calendar);
   },
+
+  deleteCalendar(calendarId) {
+    return axios.delete(`/calendar/${calendarId}/delete`);
+  }
 }
 

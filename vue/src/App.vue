@@ -68,7 +68,8 @@ html, body, #app {
 #nav ul {
   list-style-type: none;
   font-size: 20px;
-  padding:0 0 20px 0;
+  padding:0;
+  margin:0;
 }
 
 #nav ul li {
