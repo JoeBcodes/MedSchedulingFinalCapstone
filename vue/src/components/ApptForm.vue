@@ -1,6 +1,5 @@
 <template>
     <div id="form_container">
-        <form>
             <div class="form_item">
             <label>Choose Office: </label>
             <select v-model="selectedOfficeId" v-on:change="getDoctorList()">
@@ -25,7 +24,7 @@
 
             <div class="form_item">
             <label>Pick a time: </label>
-            <select v-model="appointment.time">
+            <select v-model="appointment.apptTime">
                 <option selected="selected" value="">Pick a Time Slot</option>
                 <option v-for="time in availableTimes" v-bind:key="time" v-bind:value="time">{{formattedTime(time)}}</option>
             </select>
@@ -33,11 +32,10 @@
 
             <div class="form_item">
             <label>Please describe the reason for the visit: </label>
-            <textarea></textarea>
+            <textarea v-model="appointment.purposeOfVisit"></textarea>
             </div>
 
-            <input type="submit" name="Book Appointment" />
-        </form>
+            <input type="submit" name="Book Appointment" @click="bookAppointment" />
     </div>
 </template>
 
@@ -58,9 +56,9 @@ export default {
       selectedDoctorId: 0,
       appointment: {
         doctorId: 0,
-        date: new Date(),
-        time: '',
-        purpose: '',
+        apptDate: new Date(),
+        apptTime: '',
+        purposeOfVisit: '',
       },
       availableDays: [],
       bookedApptsByDate: [],
@@ -103,6 +101,13 @@ export default {
     }
   },
   methods: {
+      bookAppointment() {
+        ApptService.createAppt({
+          ...this.appointment,
+          date: this.appointment.apptDate.toISOString().split('T')[0]
+        });
+        console.log(this.date);
+      },
       getOfficeList() {
           OfficeService.getAllOffices().then(response => {
                 this.offices = response.data;
@@ -120,9 +125,9 @@ export default {
           });
       },
       getTimesForDayOfTheWeek() {
+          this.appointment.apptDate = this.date;
           this.getApptsbyDate();
-          this.appointment.date = this.date;
-          const dayFilter = this.appointment.date.toLocaleDateString("en", { weekday: 'long'});
+          const dayFilter = this.appointment.apptDate.toLocaleDateString("en", { weekday: 'long'});
           this.availableDays.forEach(days => {
               if (dayFilter === days.dayOfTheWeek) {
                   this.doctorStartTime = days.startTime;
@@ -131,22 +136,23 @@ export default {
           });
       },
       getApptsbyDate() {
-          ApptService.getApptsByDoctorAndDate(this.appointment.doctorId, this.appointment.date).then(response => {
+          const offset = this.appointment.apptDate.getTimezoneOffset()
+          const newDate = new Date(this.appointment.apptDate.getTime() - (offset*60*1000))
+          const finalDate = newDate.toISOString().split('T')[0];
+          ApptService.getApptsByDoctorAndDate(this.appointment.doctorId, finalDate).then(response => {
               this.bookedApptsByDate = response.data
+              this.bookedApptsByDate.forEach(time => {
+              console.log(time);
+              this.apptTimesTaken.push(time.apptTime);
           });
-          this.bookedApptsByDate.forEach(time => {
-              this.apptTimesTaken.add(time.apptTime);
           });
       },
     formattedTime(time) {
         const fmtTime = time.split(':'); 
 
-        // fetch
         var hours = Number(fmtTime[0]);
         var minutes = Number(fmtTime[1]);
-        //var seconds = Number(fmtTime[2]);
 
-        // calculate
         let timeValue;
 
         if (hours > 0 && hours <= 12) {
@@ -158,7 +164,6 @@ export default {
         }
         
         timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-        // timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
         timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
 
         return timeValue;

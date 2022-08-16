@@ -1,51 +1,47 @@
 <template>
-      <div id="reviewsList">
-        <div class="reviews" v-for="review in this.$store.state.reviews" v-bind:key="review.review_id">
-            {{reviews.reviewerName}}
-            {{reviews.reviewDate}}
-            {{reviews.officeName}}
-            {{reviews.doctorName}}
-             {{reviews.reviewDesc}}
-              {{reviews.rating}}
-               {{reviews.doctorReply}}
+    <div id="doctorList">
+            
+        <h2>My Reviews</h2>
+        
+        <div class="reviewList" v-for="review in reviews" v-bind:key="review.reviewId">
+            <doctor-review :review="review" />
+            <br /><br />
         </div>
+
     </div>
 </template>
 
 <script>
 import ReviewsService from '../services/ReviewsService.js';
+import DoctorReview from './DoctorReview.vue'
 
 export default {
     name: "doctor-reviews",
+    components: {
+        DoctorReview
+    },
     data() {
         return {
             reviews: [],
-            review: {
+            updatedReview: {
                 reviewId: null,
-                reviewerId: null,
-                reviewerName: '',
-                reviewDate: '',
-                officeName: '',
-                doctorId: null,
-                doctorName: '',
-                reviewDesc: '',
-                rating: null,
                 doctorReply: ''
-            }
+            },
+            doctors: [],
+            isShown: false
         }
     },
     
   methods: {
-        retrieveReviews() {
-            ReviewsService.getDoctorsReviews(this.$store.state.user).then(response => {
-                this.$store.commit("SET_REVIEWS", response.data);
-                console.log(response);
+        retrieveReviews(doctorId) {
+            ReviewsService.getAllDoctorReviews(doctorId).then(response => {
+                this.reviews = response.data;
             });
-        }
+        },
     },
     created() {
-            this.retrieveReviews();
-        }
+        this.retrieveReviews(this.$store.state.user.userId);
+    }
 }
 </script>
 

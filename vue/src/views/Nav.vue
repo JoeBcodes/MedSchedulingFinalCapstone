@@ -31,11 +31,6 @@
                     Office Info (P)
                 </router-link>
             </li>
-            <!-- <li v-if="isPatient">
-                <router-link :to="{ name: 'calendar'}">
-                    Calendar Info (P)
-                </router-link>
-            </li> -->
             <li v-if="isPatient">
                 <router-link :to="{ name: 'reviews'}">
                     Reviews (P)
@@ -71,7 +66,6 @@ export default {
 <style>
 
 ul li {
-    display:block;
     height:75px;
     background-color: lightsteelblue;
     border:1px grey solid;
@@ -82,8 +76,8 @@ ul li:hover {
 ul li a {
     text-decoration: none;
     color:white;
-    display: block;
-    height: 100%;
+    padding:20px;
+    width: 100%;
 }
 
 </style>

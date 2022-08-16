@@ -15,7 +15,7 @@ public interface AppointmentsDao {
 
     List <Appointments> getAllAvailableApptsByDoctor(int userId);
 
-    List <Appointments> getApptsByDoctorAndDate(int doctorId, Date date);
+    List <Appointments> getApptsByDoctorAndDate(int doctorId, String date);
 
     List<Appointments> getAllAvailableAppts();
 
