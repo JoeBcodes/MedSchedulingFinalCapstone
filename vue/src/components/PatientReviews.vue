@@ -1,6 +1,8 @@
 <template>
     <div id="doctorList">
+        <p id="textline"> Please use the dropdown menu below to see a list of our doctors and read their reviews</p>
         <select v-model="selectedDoctor" v-on:change="retrieveReviews(selectedDoctor)">
+        
             <option value="0">-Please select a doctor-</option>
             <option v-for="doctor in doctors" v-bind:key="doctor.doctorId" v-bind:value="doctor.doctorId">{{doctor.doctorName}}</option>
         </select>
@@ -73,6 +75,10 @@ export default {
 
 
 <style>
+#textline {
+    font-weight: bold;
+}
+
 .individualReview {
     display: block;
     width: 400px;

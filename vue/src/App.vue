@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="header">
-      <img src="../public/logo.png" alt="Medical App logo" id="logo" />
+      <img src="../public/clearLogo.png" alt="Medical App logo" id="logo" />
+      <p id="header-text"> Welcome to Medical Scheduling </p>
     </div>
       
     <div id="nav">
@@ -51,12 +52,16 @@ html, body, #app {
 
 #header {
   width:100%;
-  background-color: #C8C8C8;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #219ebc;
   grid-area: header;
 }
 
 #logo {
   height: 100%;
+  padding-left: 5em;
+  
 }
 
 #nav {
@@ -68,8 +73,8 @@ html, body, #app {
 #nav ul {
   list-style-type: none;
   font-size: 20px;
-  padding:0;
-  margin:0;
+  padding:0 0 0 0;
+  margin: 0;
 }
 
 #nav ul li {
