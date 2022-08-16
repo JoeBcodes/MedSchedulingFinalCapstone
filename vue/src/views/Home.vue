@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home - Welcome {{this.$store.state.user.role === 'DOCTOR' ? 'Dr.' : ''}} 
+    <h1>Welcome {{this.$store.state.user.role === 'DOCTOR' ? 'Dr.' : ''}} 
       {{this.$store.state.user.firstName}}  
       {{this.$store.state.user.lastName}}
     </h1>
