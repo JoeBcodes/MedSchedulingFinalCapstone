@@ -59,6 +59,10 @@ INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_o
 VALUES (3, 5, '2022-09-12', '07:30:00', 'runny nose', true, false);
 INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
 VALUES (3, 5, '2022-09-12', '08:00:00', 'hypochondriac', false, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
+VALUES (3, 4, '2022-09-14', '09:00:00', 'allergies', false, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
+VALUES (2, 4, '2022-08-18', '11:00:00', 'I just want someone to talk to', false, false);
 
 SELECT * FROM appointments;
 

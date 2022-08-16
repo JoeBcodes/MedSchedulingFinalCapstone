@@ -3,37 +3,37 @@
         <ul>
             <li v-if="isDoctor">      
                 <router-link :to="{ name: 'appts'}">
-                    View Appointments 
+                    View Appointments <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link> 
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'office'}">
-                    Office Info 
+                    Office Info <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'calendar'}">
-                    Calendar Info 
+                    Calendar Info <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'reviews'}">
-                    Reviews 
+                    Reviews <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'appts'}">
-                    View Appointments 
+                    View Appointments <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'office'}">
-                    Office Info 
+                    Office Info <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'reviews'}">
-                    Doctors 
+                    Doctors <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
         </ul>
@@ -66,8 +66,20 @@ export default {
 
 
 <style>
+.dr-logo {
+    height: 25px;
+    vertical-align: bottom;
+    -webkit-filter: invert(50%);
+}
+
+.pt-logo {
+    height: 25px;
+    vertical-align: bottom;
+    -webkit-filter: invert(50%);
+}
+
 ul li {
-    height:75px;
+    height:80px;
     background-color: #8ecae6;
     border:20px;
     margin: 1px;
