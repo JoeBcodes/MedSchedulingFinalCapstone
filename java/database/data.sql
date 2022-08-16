@@ -1,4 +1,102 @@
 BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS doctors_in_office, office, appointments, calendar, reviews, users CASCADE;
+
+CREATE TABLE users (
+	user_id SERIAL,
+	username varchar(50) NOT NULL UNIQUE,
+	password_hash varchar(200) NOT NULL,
+	role varchar(50) NOT NULL,
+	first_name varchar(50) NOT NULL,
+        last_name varchar(50) NOT NULL,
+        phone varchar(15) NOT NULL,
+        email varchar(100) NOT NULL,
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
+	
+	
+	
+);
+
+CREATE TABLE office (
+        office_id SERIAL,
+        name varchar(50) NOT NULL UNIQUE,
+        address varchar(100) NOT NULL,
+        phone varchar(15) NOT NULL,
+        email varchar(50) NOT NULL,
+        start_hours TIME NOT NULL,
+        end_hours TIME NOT NULL,
+        specialty varchar(50),
+        hourly_rate DECIMAL,
+        CONSTRAINT PK_office PRIMARY KEY (office_id)
+);
+
+CREATE TABLE appointments (
+
+	appt_id SERIAL,
+	doctor_id int NOT NULL,
+	patient_id int NOT NULL,
+	appt_date date NOT NULL,
+	appt_time time NOT NULL,
+	purpose_of_visit varchar(50) NOT NULL,
+	is_read boolean NOT NULL,
+	is_available boolean NOT NULL,
+	
+	CONSTRAINT PK_appt_id PRIMARY KEY (appt_id),
+	CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id),
+	CONSTRAINT FK_patient_id FOREIGN KEY (patient_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE doctors_in_office (
+        office_id int,
+        doctor_id int UNIQUE,
+        CONSTRAINT FK_office_id FOREIGN KEY (office_id) REFERENCES office(office_id),
+        CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE calendar (
+        calendar_id SERIAL,
+        doctor_id int NOT NULL,
+        day_of_the_week varchar(10) NOT NULL,
+        start_time time NOT NULL,
+        end_time time NOT NULL,
+        
+        CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE reviews (
+        review_id SERIAL,
+        reviewer_id int NOT NULL,
+        doctor_id int NOT NULL,
+        review_date date,
+        review_desc varchar(200),
+        rating int NOT NULL,
+        doctor_reply varchar(200),
+        CONSTRAINT PK_review_id PRIMARY KEY (review_id),
+        CONSTRAINT FK_doctor_id FOREIGN KEY (doctor_id) REFERENCES users(user_id),
+        CONSTRAINT FK_reviewer_id FOREIGN KEY (reviewer_id) REFERENCES users(user_id),
+        CONSTRAINT FK_doctor_office FOREIGN KEY (doctor_id) REFERENCES doctors_in_office(doctor_id)
+);
+
+COMMIT TRANSACTION;
+-----------------------------------------------------------------------------------------------------------------------
+GRANT ALL
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_owner;
+
+GRANT ALL
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_owner;
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA public
+TO final_capstone_appuser;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA public
+TO final_capstone_appuser;
+------------------------------------------------------------------------------------------------------------
+
+BEGIN TRANSACTION;
 INSERT INTO users (username,password_hash,role, first_name, last_name, phone, email)
 VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'Larry', 'Lobster', '555-555-5555', 'larry@gmail.com');
 INSERT INTO users (username, password_hash, role, first_name, last_name, phone, email) VALUES ('joshbernardino', '$2a$10$dYI9MPWnZQjWyiR8KQdp8e35o4Bh4eil/UmcWtjMD9s35FxyLX3G.', 'DOCTOR', 'Josh', 'Bernardino', '111-111-1111', 'josh.bernardino@gmail.com');

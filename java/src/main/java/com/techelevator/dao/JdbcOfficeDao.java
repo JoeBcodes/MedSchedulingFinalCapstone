@@ -52,6 +52,18 @@ public class JdbcOfficeDao implements OfficeDao {
     }
 
     @Override
+    public int getOfficeIdByDoctorId(int doctorId) {
+
+        String sql = "SELECT office_id " +
+                "FROM doctors_in_office " +
+                "WHERE doctor_id = ?;";
+
+        int officeId = (Integer)jdbcTemplate.queryForObject(sql, Integer.class, doctorId);
+        return officeId;
+    }
+
+
+    @Override
     public void addDoctorToOffice(int officeId, int doctorId) {
         String sql = "INSERT INTO doctors_in_office (doctor_id, office_id) " +
                 "VALUES (?, ?);";
