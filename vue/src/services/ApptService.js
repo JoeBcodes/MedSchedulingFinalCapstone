@@ -20,6 +20,10 @@ export default {
 
     createAppt(appointment) {
         return axios.post(`appointments/new-appointment`, appointment);
+    },
+
+    updateReadStatus(apptId) {
+        return axios.put(`appointments/${apptId}/mark-read`);
     }
 
 }

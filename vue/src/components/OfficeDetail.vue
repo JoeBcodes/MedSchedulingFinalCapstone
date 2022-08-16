@@ -19,6 +19,11 @@
 import OfficeService from '../services/OfficeService.js';
 
 export default {
+    data() {
+        return {
+            offices: []
+        }
+    },
     name: "office-detail",
     methods: {
         retrieveOfficeDetails() {
@@ -48,6 +53,12 @@ export default {
             timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
 
             return timeValue;
+        },
+        getOffices() {
+        OfficeService.getAllOffices().then(response => {
+                this.offices = response.data;
+                console.log(this.offices);
+            })
         }
     },
 
@@ -58,6 +69,7 @@ export default {
     },
     created() {
             this.retrieveOfficeDetails();
+            this.getOffices();
     }
 }
 </script>

@@ -13,9 +13,9 @@
             </tr>
             <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id" :class="{ 'notRead' : !appointment.read}">
                 <td>{{appointment.patientName}}</td>
-                <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
+                <td>{{appointment.apptDate}} @ {{formattedTime(appointment.apptTime)}}</td>
                 <td>{{appointment.purposeOfVisit}}</td>
-                <td class="buttonColumn"><button v-if="appointment.read === false" v-on:click="appointment.read = true">Mark as Seen</button></td>
+                <td class="buttonColumn"><button v-if="appointment.read === false" v-on:click="markAsRead(appointment.apptId)">Mark as Seen</button></td>
             </tr>
         </table>
         </div>
@@ -90,11 +90,34 @@ export default {
                 return today >= appointment;
             });
         },
-        isRead(appointment) {
-            if (appointment.read === true) {
-                return true;
+        markAsRead(appointmentId) {
+            ApptService.updateReadStatus(appointmentId).then(response => {
+                if(response.status === 200) {
+                    this.retrieveAppts();
+                }
+            });
+        },
+        formattedTime(time) {
+            const fmtTime = time.split(':'); 
+
+            // fetch
+            var hours = Number(fmtTime[0]);
+            var minutes = Number(fmtTime[1]);
+
+            let timeValue;
+
+            if (hours > 0 && hours <= 12) {
+            timeValue= "" + hours;
+            } else if (hours > 12) {
+            timeValue= "" + (hours - 12);
+            } else if (hours == 0) {
+            timeValue= "12";
             }
-            else {return false;}
+            
+            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+            return timeValue;
         }
     },
     created() {
