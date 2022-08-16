@@ -12,7 +12,7 @@ import EditOffice from '../components/EditOffice.vue';
 import AddDoctorToOffice from '../components/AddDoctorToOffice.vue';
 
 export default {
-  components: { OfficeDetail, EditOffice, AddDoctorToOffice},
+  components: { OfficeDetail, EditOffice, AddDoctorToOffice },
   name: "office-details",
   computed: {
       isDoctor() {
