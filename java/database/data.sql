@@ -8,7 +8,6 @@ INSERT INTO users (username, password_hash, role, first_name, last_name, phone, 
 
 SELECT * FROM users;
 
-
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
 VALUES (2, 'Monday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
@@ -83,4 +82,6 @@ SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name
                 JOIN users pu
                 ON a.patient_id = pu.user_id
                 WHERE is_read = false;
+
 COMMIT TRANSACTION;
+
