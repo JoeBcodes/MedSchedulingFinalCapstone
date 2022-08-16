@@ -52,7 +52,8 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 "ON a.doctor_id = du.user_id " +
                 "JOIN users pu " +
                 "ON a.patient_id = pu.user_id " +
-                "WHERE du.username = ?;";
+                "WHERE du.username = ?" +
+                "ORDER BY appt_date ASC, appt_time ASC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
         while (results.next()) {
             Appointments appointment = mapRowToAppointments(results);
@@ -70,7 +71,8 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 "ON a.doctor_id = du.user_id " +
                 "JOIN users pu " +
                 "ON a.patient_id = pu.user_id " +
-                "WHERE pu.username = ? AND is_available = false;";
+                "WHERE pu.username = ? AND is_available = false" +
+                "ORDER BY appt_date ASC, appt_time ASC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Appointments appointment = mapRowToAppointments(results);
