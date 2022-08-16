@@ -23,4 +23,6 @@ public interface AppointmentsDao {
 
     List<Appointments> getUnreadAppts();
 
+    void markApptRead(int apptId);
+
 }
