@@ -1,46 +1,32 @@
 <template>
     <div id="doctorList">
             
-            <p>My Reviews</p>
-            
-            <div class="reviewList" v-for="review in reviews" v-bind:key="review.reviewId">
-                
-                    <div class="reviewRow">
-                        {{review.reviewDesc}}<br />
-                        <textarea v-if="!review.doctorReply" v-model.lazy="updatedReview.doctorReply" placeholder="Leave reply here..."></textarea><br />
-                        <button v-if="!review.doctorReply" class="leaveReplyButton" v-on:click="addDoctorReply(updatedReview, review.reviewId)">Submit Reply</button>
-                    </div>
-                
-            </div>
+        <h2>My Reviews</h2>
+        
+        <div class="reviewList" v-for="review in reviews" v-bind:key="review.reviewId">
+            <doctor-review :review="review" />
+            <br /><br />
+        </div>
 
     </div>
 </template>
 
 <script>
 import ReviewsService from '../services/ReviewsService.js';
+import DoctorReview from './DoctorReview.vue'
 
 export default {
     name: "doctor-reviews",
+    components: {
+        DoctorReview
+    },
     data() {
         return {
             reviews: [],
-            review: {
-                reviewId: null,
-                reviewerId: null,
-                reviewerName: '',
-                reviewDate: '',
-                officeName: '',
-                doctorId: null,
-                doctorName: '',
-                reviewDesc: '',
-                rating: null,
-                doctorReply: ''
-            },
             updatedReview: {
                 reviewId: null,
                 doctorReply: ''
             },
-            test: '',
             doctors: [],
             isShown: false
         }
@@ -50,21 +36,12 @@ export default {
         retrieveReviews(doctorId) {
             ReviewsService.getAllDoctorReviews(doctorId).then(response => {
                 this.reviews = response.data;
-                console.log(response);
             });
         },
-        showReview() {
-            this.isShown = !this.isShown;
-        },
-        addDoctorReply(updatedReview, reviewId) {
-            this.updatedReview.reviewId = reviewId;
-            ReviewsService.updateWithDoctorReply(updatedReview);
-            setTimeout(function(){window.location.reload();},1000);
-        }
     },
     created() {
-            this.retrieveReviews(this.$store.state.user.userId);
-        }
+        this.retrieveReviews(this.$store.state.user.userId);
+    }
 }
 </script>
 

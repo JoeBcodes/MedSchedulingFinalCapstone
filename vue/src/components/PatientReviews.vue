@@ -5,15 +5,14 @@
             <option v-for="doctor in doctors" v-bind:key="doctor.doctorId" v-bind:value="doctor.doctorId">{{doctor.doctorName}}</option>
         </select>
             
-        <div class="individualReview">
-            <div v-for="review in reviews" v-bind:key="review.reviewId">
-                
-                {{review.reviewDesc}}
-                {{review.reviewRating}}
-                {{review.reviewDate}}
-                {{review.reviewerName}}
-                {{review.doctorReply}}
-
+        <div class="individualReview" v-for="review in reviews" v-bind:key="review.reviewId">
+            <p class="review_desc">"{{review.reviewDesc}}"</p>
+            <p class="signature">{{review.reviewerName}} <br />
+                <span class="reviewDate">{{review.reviewDate}}</span>    
+            </p>
+            <div class="doctorReply">
+            <p v-if="review.doctorReply">Doctor's Reply</p>
+            <p v-if="review.doctorReply" class="review_desc">"{{review.doctorReply}}"</p>
             </div>
         </div>
 
@@ -73,6 +72,23 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style>
+.individualReview {
+    display: block;
+    width: 400px;
+    background-color: #e0e0e0d8;
+    padding: 20px 40px;
+    margin: 20px 0;
+    border-radius: 20px;
+}
+.review_desc {
+    font-size: 20px;
+}
+.doctorReply {
+    text-align: right;
+}
+.doctorReply p {
+    margin:0;
+    margin-bottom: 5px;
+}
 </style>

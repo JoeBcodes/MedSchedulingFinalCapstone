@@ -2,13 +2,20 @@
     <div id="apptList">
         <button v-on:click="showForm" id="bookAppt">Book New Appointment</button>
         <appt-form v-if="isShown" />
-
-        <div class="appointment" v-for="appointment in this.$store.state.appointments" v-bind:key="appointment.appt_id">
-            {{appointment.patientName}}
-            {{appointment.apptDate}}
-            {{appointment.apptTime}}
-            {{appointment.purposeOfVisit}}
-        </div>
+        <table id="apptTable">    
+            <tr>
+                <th>Date &amp; Time</th>
+                <th>Doctor Name</th>
+                <th>Purpose of Visit</th>
+                <!-- <th></th> -->
+            </tr>
+            <tr v-for="appointment in this.$store.state.appointments" v-bind:key="appointment.appt_id">
+                <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
+                <td>{{appointment.doctorName}}</td>
+                <td>{{appointment.purposeOfVisit}}</td>
+                <!-- <td class="buttonColumn"><button v-if="appointment.read === false">Mark as Seen</button></td> -->
+            </tr>
+        </table>
     </div>
 </template>
 
@@ -30,7 +37,6 @@ export default {
         retrieveAppts() {
             ApptService.getPatientAppt(this.$store.state.user).then(response => {
                 this.$store.commit("SET_APPTS", response.data);
-                console.log(response);
             });
         },
         showForm() {
@@ -53,6 +59,7 @@ button#bookAppt {
     padding: 10px;
     font-size: 16px;
     border-color: #89ABFD;
+    margin-bottom: 30px;
 }
 button#bookAppt:hover {
     background-color: lightsteelblue;
