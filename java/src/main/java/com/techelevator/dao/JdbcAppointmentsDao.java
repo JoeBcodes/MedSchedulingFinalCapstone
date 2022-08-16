@@ -105,7 +105,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
     @Override
     public List <Appointments> getApptsByDoctorAndDate(int doctorId, String date) {
         List <Appointments> appointments = new ArrayList<>();
-        LocalDate newDate = LocalDate.parse(date);
+//        LocalDate newDate = LocalDate.parse(date);
         String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
                 "FROM appointments a " +
                 "JOIN users du " +
@@ -113,7 +113,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 "JOIN users pu " +
                 "ON a.patient_id = pu.user_id " +
                 "WHERE doctor_id = ? AND appt_date = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, newDate);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId, date);
         while (results.next()) {
             Appointments appointment = mapRowToAppointments(results);
             appointments.add(appointment);
@@ -191,7 +191,7 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         appointment.setDoctorName(rs.getString("doctor_name"));
         appointment.setPatientId(rs.getInt("patient_id"));
         appointment.setPatientName(rs.getString("patient_name"));
-        appointment.setApptDate(rs.getDate("appt_date"));
+        appointment.setApptDate(rs.getString("appt_date"));
         appointment.setApptTime(rs.getTime("appt_time"));
         appointment.setPurposeOfVisit(rs.getString("purpose_of_visit"));
         appointment.setRead(rs.getBoolean("is_read"));
