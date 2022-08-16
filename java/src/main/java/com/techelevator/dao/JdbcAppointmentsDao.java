@@ -175,6 +175,14 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
+    @Override
+    public void markApptRead(int apptId) {
+        String sql = "UPDATE appointments " +
+                "SET is_read = true " +
+                "WHERE appt_id = ?;";
+        jdbcTemplate.update(sql, apptId);
+    }
+
 
     private Appointments mapRowToAppointments(SqlRowSet rs) {
         Appointments appointment = new Appointments();
