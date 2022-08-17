@@ -132,14 +132,14 @@ export default {
 
 <style>
 #apptListWrap {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     padding:20px;
     margin-bottom:20px;
     border-radius: 20px;
     width:80%;
 }
 #apptListWrap1 {
-    background-color: rgb(223, 223, 223);
+    background-color: rgba(223, 223, 223, 0.9);
     padding:20px;
     margin-bottom:20px;
     border-radius: 20px;

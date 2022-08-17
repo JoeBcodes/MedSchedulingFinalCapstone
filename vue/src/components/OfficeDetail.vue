@@ -74,7 +74,7 @@ export default {
 <style>
 .office-details {
     border-radius: 20px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px 30px;
     margin: 20px 20px 20px 0;
     width:300px;
