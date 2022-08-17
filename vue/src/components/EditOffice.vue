@@ -97,6 +97,7 @@ export default {
                     });
                 }
             this.isShown = false;
+            location.reload(true);
             });
         },
         getOffices() {

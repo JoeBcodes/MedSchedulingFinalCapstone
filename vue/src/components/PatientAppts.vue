@@ -1,21 +1,23 @@
 <template>
     <div id="apptList">
         <button v-on:click="showForm" id="bookAppt">Book New Appointment</button>
-        <appt-form v-if="isShown" />
-        <h2>Upcoming Appointments</h2>
-        <table class="apptTable">    
-            <tr>
-                <th>Date &amp; Time</th>
-                <th>Doctor Name</th>
-                <th>Purpose of Visit</th>
-            </tr>
-            <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id">
-                <td>{{appointment.apptDate}}<br />{{formattedTime(appointment.apptTime)}}</td>
-                <td>{{appointment.doctorName}}</td>
-                <td>{{appointment.purposeOfVisit}}</td>
-            </tr>
-        </table>
-        <div v-if="pastAppointments.length > 0">
+        <div class="patientApptWrap">
+            <appt-form v-if="isShown" />
+            <h2>Upcoming Appointments</h2>
+            <table class="apptTable">    
+                <tr>
+                    <th>Date &amp; Time</th>
+                    <th>Doctor Name</th>
+                    <th>Purpose of Visit</th>
+                </tr>
+                <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id">
+                    <td>{{appointment.apptDate}}<br />{{formattedTime(appointment.apptTime)}}</td>
+                    <td>{{appointment.doctorName}}</td>
+                    <td>{{appointment.purposeOfVisit}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="patientApptWrap1" v-if="pastAppointments.length > 0">
         <h2>Past Appointments</h2>
         <table class="apptTable">    
             <tr>
@@ -101,13 +103,25 @@ export default {
 </script>
 
 <style>
-
+.patientApptWrap {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius:20px;
+    padding:20px 40px;
+    margin-bottom:20px;
+    width: 90%;
+}
+.patientApptWrap1 {
+    background-color: rgba(223, 223, 223, 0.9);
+    border-radius:20px;
+    padding:20px 40px;
+    width:90%;
+}
 .apptList {
     margin:20px;
 }
 .apptTable {
     border-collapse: collapse;
-    width:90%;
+    width:100%;
 }
 .apptTable th {
     text-align: left;

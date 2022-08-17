@@ -79,6 +79,7 @@ export default {
                 if (response.status == 200) {
                     this.retrieveReviews(this.selectedDoctor);
                     this.review.reviewDesc = '';
+                    this.review.reviewDate = new Date();
                 }
             });
         }
@@ -100,10 +101,13 @@ export default {
 .individualReview {
     display: block;
     width: 400px;
-    background-color: #e0e0e0d8;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px 40px;
     margin: 20px 0;
     border-radius: 20px;
+}
+.individualReview:nth-child(odd) {
+    background-color: rgba(233, 230, 230, 0.9);
 }
 .review_desc {
     font-size: 20px;

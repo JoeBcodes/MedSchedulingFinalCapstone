@@ -11,8 +11,8 @@
                 </tr>
                 <tr v-for="calendar in this.$store.state.calendars" v-bind:key="calendar.calendar_id">
                     <td>{{calendar.dayOfTheWeek}}</td>
-                    <td>{{calendar.startTime}}</td>
-                    <td>{{calendar.endTime}}</td>
+                    <td>{{formattedTime(calendar.startTime)}}</td>
+                    <td>{{formattedTime(calendar.endTime)}}</td>
                     <td class="deleteBtn"><a href="" v-on:click="deleteCalendarEntry(calendar.calendarId)"><img src="../../public/pill_delete.png" /></a></td>
                 </tr>
             </table>
@@ -118,6 +118,28 @@ export default {
             });
 
         },
+        formattedTime(time) {
+            const fmtTime = time.split(':'); 
+
+            // fetch
+            var hours = Number(fmtTime[0]);
+            var minutes = Number(fmtTime[1]);
+
+            let timeValue;
+
+            if (hours > 0 && hours <= 12) {
+            timeValue= "" + hours;
+            } else if (hours > 12) {
+            timeValue= "" + (hours - 12);
+            } else if (hours == 0) {
+            timeValue= "12";
+            }
+            
+            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+            return timeValue;
+        },
         deleteCalendarEntry(reviewId) {
             CalendarService.deleteCalendar(reviewId);
         }
@@ -137,6 +159,12 @@ export default {
 
 
 <style scoped>
+.calendar {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius:20px;
+    padding:20px 40px;
+    width:600px;
+}
 #availCalendar {
     border-collapse: collapse;
 }
