@@ -5,7 +5,7 @@
       {{this.$store.state.user.lastName}}
     </h1>
     
-    <img src="../../public/clearLogo.png" alt="Medical App Logo" id="logoclear" />
+    <img src="../../public/clearLogo.png" alt="Medical App Logo" id="logo-clear" />
   </div>
 </template>
 
@@ -16,8 +16,12 @@ export default {
 </script>
 
 <style>
-#page {
-  max-width: 100%;
+#logo-clear {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.5;
 }
 
 /* .home {
