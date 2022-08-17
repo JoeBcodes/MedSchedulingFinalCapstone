@@ -1,5 +1,13 @@
 <template>
     <div id="formContainer">
+        <div id="officeSelector">
+            <label>Please select your office:</label>
+            <select v-model="office.officeId" v-on:change="updateDoctorOffice">
+                <option value="0">You are not in an office</option>
+                <option v-for="office in allOffices" v-bind:key="office.officeId" :value="office.officeId">{{office.name}}</option>
+            </select>
+        </div>
+
         <button v-on:click="showForm">Edit Office Info</button>
 
         <form v-if="isShown">
@@ -51,24 +59,32 @@ export default {
     data() {
         return {
             office: {},
+            offices: [],
+            doctorsOfficeId: 0,
             isShown: false,
         }
     },
     components: {
-
+        
     },
     computed: {
-
+        allOffices() { return this.$store.state.offices }
     },
     methods: {
+        getOfficeInfoForDoctor() {
+            OfficeService.getOfficeByDoctorId(this.$store.state.user.userId).then(response => {
+                this.$store.commit("SET_OFFICE", response.data);
+                this.office = response.data;
+                console.log(response);
+            });
+        },
         showForm() {
             this.isShown = !this.isShown;
-            this.office = {
-                ...this.$store.state.office
-            }
+            // this.office = {
+            //     ...this.$store.state.office
+            // }
         },
         editOfficeDetail() {
-            console.log(this.office)
             OfficeService.updateOfficeInfo(this.office).then(response => {
                 if (response.status === 200) {
                     this.$store.commit("SET_OFFICE", {
@@ -77,7 +93,23 @@ export default {
                 }
             this.isShown = false;
             });
+        },
+        getOffices() {
+            this.offices = this.$store.state.offices;
+            console.log("store.state.offices from editOffice");
+            console.log(this.$store.state.offices);
+        },
+        updateDoctorOffice() {
+            OfficeService.updateOfficeForDoctor(this.office.officeId, this.$store.state.user.userId).then(response => {
+                if (response.status == 200) {
+                    this.getOfficeInfoForDoctor();
+                }
+            });
         }
+    },
+    created() {
+        this.getOffices();
+        this.getOfficeInfoForDoctor();
     }
 }
 </script>

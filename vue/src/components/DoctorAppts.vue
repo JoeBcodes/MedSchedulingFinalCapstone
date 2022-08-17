@@ -19,7 +19,7 @@
             </tr>
         </table>
         </div>
-
+        <div v-if="pastAppointments.length > 0">
         <h3>Past Appointments</h3>
         <div class="appointment">
         <table class="apptTable">    
@@ -36,6 +36,7 @@
                 <td class="buttonColumn"></td>
             </tr>
         </table>
+        </div>
         </div>
         
     </div>
