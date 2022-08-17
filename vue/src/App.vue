@@ -1,16 +1,23 @@
 <template>
+
   <div id="app">
+      <head>
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+      </head>
     <div id="header">
       <img src="../public/clearLogo.png" alt="Medical App logo" id="logo" />
       <p id="header-text"> Medical Scheduling </p>
       <img src="../public/jr-logo.jpg" alt="J R Group logo" id="jr-group" />
     </div>
+
+  
       
     <div id="nav">
       <ul>
         <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
       </ul>
       <userNav v-if="$store.state.token !== ''" />
+      <img src="../public/never-miss.jpg" alt="Never Miss Appt" id="never-miss" />
     </div>
 
     <div id="main">
@@ -61,6 +68,11 @@ html, body, #app {
   grid-template-columns: 1fr 1fr 312.53px;
 }
 
+#header-text {
+ font-family: 'Crimson Text', serif;
+ 
+}
+
 #logo {
   width: 90px;
   padding-left: 80px;
@@ -74,8 +86,12 @@ html, body, #app {
   text-align: right;
 }
 
+#never-miss {
+  width: 247.5px;
+}
+
 #header-text {
-  font-size: 30px;
+  font-size: 40px;
   color: white;
 }
 

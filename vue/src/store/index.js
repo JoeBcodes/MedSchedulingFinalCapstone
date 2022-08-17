@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     role: '',
     appointments: [],
-    office: [],
+    offices: [],
+    office: {},
     calendars: [],
     selectedApptId: null
   },
@@ -52,6 +53,9 @@ export default new Vuex.Store({
     },
     SET_OFFICE(state, data) {
       state.office = data;
+    },
+    SET_OFFICES(state, data) {
+      state.offices = data;
     },
     SET_SELECTED_APPT(state, appointmentId) {
       state.selectedApptId = appointmentId;
