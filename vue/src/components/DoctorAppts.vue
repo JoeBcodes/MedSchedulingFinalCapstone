@@ -2,41 +2,43 @@
     <div id="apptList">
         <h2>My Appointments</h2>
         
-        <h3>Upcoming Appointments</h3>
-        <div class="appointment">
-        <table class="apptTable">    
-            <tr>
-                <th>Patient Name</th>
-                <th>Date &amp; Time</th>
-                <th>Purpose of Visit</th>
-                <th></th>
-            </tr>
-            <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id" :class="{ 'notRead' : !appointment.read}">
-                <td>{{appointment.patientName}}</td>
-                <td>{{appointment.apptDate}} @ {{formattedTime(appointment.apptTime)}}</td>
-                <td>{{appointment.purposeOfVisit}}</td>
-                <td class="buttonColumn"><button v-if="appointment.read === false" v-on:click="markAsRead(appointment.apptId)">Mark as Seen</button></td>
-            </tr>
-        </table>
+        <div id="apptListWrap">
+            <h3>Upcoming Appointments</h3>
+            <div class="appointment">
+            <table class="apptTable">    
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Date &amp; Time</th>
+                    <th>Purpose of Visit</th>
+                    <th></th>
+                </tr>
+                <tr v-for="appointment in upcomingAppointments" v-bind:key="appointment.appt_id" :class="{ 'notRead' : !appointment.read}">
+                    <td>{{appointment.patientName}}</td>
+                    <td>{{appointment.apptDate}} @ {{formattedTime(appointment.apptTime)}}</td>
+                    <td>{{appointment.purposeOfVisit}}</td>
+                    <td class="buttonColumn"><button v-if="appointment.read === false" v-on:click="markAsRead(appointment.apptId)">Mark as Seen</button></td>
+                </tr>
+            </table>
+            </div>
         </div>
-        <div v-if="pastAppointments.length > 0">
-        <h3>Past Appointments</h3>
-        <div class="appointment">
-        <table class="apptTable">    
-            <tr>
-                <th>Patient Name</th>
-                <th>Date &amp; Time</th>
-                <th>Purpose of Visit</th>
-                <th></th>
-            </tr>
-            <tr v-for="appointment in pastAppointments" v-bind:key="appointment.appt_id">
-                <td>{{appointment.patientName}}</td>
-                <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
-                <td>{{appointment.purposeOfVisit}}</td>
-                <td class="buttonColumn"></td>
-            </tr>
-        </table>
-        </div>
+        <div id="apptListWrap1" v-if="pastAppointments.length > 0">
+            <h3>Past Appointments</h3>
+            <div class="appointment">
+            <table class="apptTable">    
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Date &amp; Time</th>
+                    <th>Purpose of Visit</th>
+                    <th></th>
+                </tr>
+                <tr v-for="appointment in pastAppointments" v-bind:key="appointment.appt_id">
+                    <td>{{appointment.patientName}}</td>
+                    <td>{{appointment.apptDate}} @ {{appointment.apptTime}}</td>
+                    <td>{{appointment.purposeOfVisit}}</td>
+                    <td class="buttonColumn"></td>
+                </tr>
+            </table>
+            </div>
         </div>
         
     </div>
@@ -129,10 +131,24 @@ export default {
 
 
 <style>
+#apptListWrap {
+    background-color: white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius: 20px;
+    width:80%;
+}
+#apptListWrap1 {
+    background-color: rgb(223, 223, 223);
+    padding:20px;
+    margin-bottom:20px;
+    border-radius: 20px;
+    width:80%;
+}
 .apptTable {
     text-align: left;
     border-collapse: collapse;
-    width:90%;
+    width:100%;
 }
 .apptTable td, th {
     padding:10px 50px 10px 5px;

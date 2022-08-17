@@ -79,6 +79,7 @@ export default {
                 if (response.status == 200) {
                     this.retrieveReviews(this.selectedDoctor);
                     this.review.reviewDesc = '';
+                    this.review.reviewDate = new Date();
                 }
             });
         }
