@@ -31,8 +31,8 @@ CREATE TABLE appointments (
 	appt_id SERIAL,
 	doctor_id int NOT NULL,
 	patient_id int NOT NULL,
-	appt_date date NOT NULL,
-	appt_time time NOT NULL,
+	appt_date varchar(10) NOT NULL,
+	appt_time varchar(10) NOT NULL,
 	purpose_of_visit varchar(50) NOT NULL,
 	is_read boolean NOT NULL,
 	is_available boolean NOT NULL,
@@ -128,6 +128,16 @@ INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
 VALUES (2, 'Thursday', '08:00:00', '17:00:00');
 INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
 VALUES (2, 'Friday', '08:00:00', '17:00:00');
+INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
+VALUES (6, 'Monday', '08:00:00', '17:00:00');
+INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
+VALUES (6, 'Tuesday', '08:00:00', '17:00:00');
+INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
+VALUES (6, 'Wednesday', '08:00:00', '17:00:00');
+INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
+VALUES (6, 'Thursday', '08:00:00', '17:00:00');
+INSERT INTO calendar (doctor_id, day_of_the_week, start_time, end_time)
+VALUES (6, 'Friday', '08:00:00', '17:00:00');
 
 SELECT * FROM calendar;
 
