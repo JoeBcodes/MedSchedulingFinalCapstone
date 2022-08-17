@@ -56,8 +56,17 @@ export default {
             calendar: {
                 doctorId: null,
                 dayOfTheWeek: '0',
-                startTime: '09:00',
+                startTime: '08:00',
                 endTime: '17:00',
+            },
+            arrayOfDays: {
+                sunday: 1,
+                monday: 2,
+                tuesday: 3,
+                wednesday: 4, 
+                thursday: 5, 
+                friday: 6,
+                saturday: 7
             }
         }
     },
@@ -85,6 +94,13 @@ export default {
         deleteCalendarEntry(reviewId) {
             CalendarService.deleteCalendar(reviewId);
         }
+        // sortCalendarList(listOfDays) {
+        //     for(i = 0; i < arrayOfDays.length; i++) {
+        //     if(this.arrayOfDays.listOfDays[i] > this.arrayOfDays.listOfDays[i + 1] ) {
+
+        //     }
+        
+
     },
     created() {
             this.retrieveCalendars(this.$store.state.user.userId);
