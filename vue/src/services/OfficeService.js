@@ -25,8 +25,16 @@ export default {
     removeDoctorFromOffice(officeId, doctorId) {
         return axios.delete(`/${officeId}/update/remove-doctor`, doctorId);
 
-        
+    },
+
+    updateOfficeForDoctor(officeId, doctorId) {
+        return axios.put(`/office/${officeId}/update/update-doctor-office/${doctorId}`);
+    },
+    
+    getOfficeByDoctorId(doctorId) {
+        return axios.get(`/office/doctor/${doctorId}`);
+    }
     //removeDoctorFromOffice(officeId, doctorId) {
        // return axios.delete(`/${officeId}/update/remove-doctor/${doctorId}`); possible change?
-    }
+    //}
 }

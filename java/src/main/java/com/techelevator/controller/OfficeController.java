@@ -32,8 +32,8 @@ public class OfficeController {
     }
 
     @RequestMapping(path = "/doctor/{doctorId}", method = RequestMethod.GET)
-    public int getOfficeIdByDoctorId(@PathVariable int doctorId) {
-        return officeDao.getOfficeIdByDoctorId(doctorId);
+    public Office getOfficeByDoctor(@PathVariable int doctorId) {
+        return officeDao.getOfficeByDoctor(doctorId);
     }
 
     @RequestMapping(path = "/{id}/update", method = RequestMethod.PUT)
