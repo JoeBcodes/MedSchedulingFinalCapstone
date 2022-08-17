@@ -93,11 +93,12 @@ ul li a {
     display: inline-block;
     text-decoration: none;
     color:white;
-    padding:27px 0px;
+    padding:28px 0px;
     width: 100%; 
     position:relative;
     z-index: 1;
     transition: all .5s;
+    border: .5px white solid;
 }
 
 
