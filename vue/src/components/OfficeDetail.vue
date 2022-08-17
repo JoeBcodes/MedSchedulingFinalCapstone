@@ -3,7 +3,7 @@
 <!--print out list of drs in Office-->
 
     <div id="officeDetailsList">
-        <div class="office-details">
+        <div class="office-details" v-for="office in offices" v-bind:key="office.officeId">
             <h2>{{office.name}}</h2>
             <p>{{office.address}}</p>
             <p>{{office.phone}}</p>
@@ -13,6 +13,7 @@
             <p>Our appointment rates is ${{office.hourlyRate}}/hr</p>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -21,17 +22,12 @@ import OfficeService from '../services/OfficeService.js';
 export default {
     data() {
         return {
-            offices: []
+            offices: [],
+            doctorsOfficeId: 0
         }
     },
     name: "office-detail",
     methods: {
-        retrieveOfficeDetails() {
-            OfficeService.getOfficeInfoById(1).then(response => {
-                this.$store.commit("SET_OFFICE", response.data);
-                console.log(response);
-            });
-        },
         formattedTime(time) {
             const fmtTime = time.split(':'); 
 
@@ -55,11 +51,13 @@ export default {
             return timeValue;
         },
         getOffices() {
-        OfficeService.getAllOffices().then(response => {
+            OfficeService.getAllOffices().then(response => {
+                this.$store.commit("SET_OFFICES", response.data);
                 this.offices = response.data;
+                console.log("getOffices from OfficeDetail");
                 console.log(this.offices);
-            })
-        }
+                });
+            }
     },
 
     //list of all drs in this office
@@ -68,7 +66,6 @@ export default {
         office() { return this.$store.state.office }
     },
     created() {
-            this.retrieveOfficeDetails();
             this.getOffices();
     }
 }
@@ -79,7 +76,13 @@ export default {
     border-radius: 20px;
     background-color: #f1f1f1d8;
     padding: 10px 30px;
-    margin-bottom: 20px;
+    margin: 20px 20px 20px 0;
     width:300px;
+    float:left;
 }
+#officeSelector {
+    clear: both;
+    margin-bottom: 30px;
+}
+
 </style>

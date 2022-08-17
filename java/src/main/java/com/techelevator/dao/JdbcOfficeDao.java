@@ -7,7 +7,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Time;
 
 public class JdbcOfficeDao implements OfficeDao {
 
@@ -41,6 +40,21 @@ public class JdbcOfficeDao implements OfficeDao {
             offices.add(office);
         }
         return offices;
+    }
+
+    @Override
+    public Office getOfficeByDoctor(int doctorId) {
+        Office office = null;
+        String sql = "SELECT o.office_id, name, address, phone, email, start_hours, end_hours, specialty, hourly_rate " +
+                "FROM office o " +
+                "JOIN doctors_in_office dio " +
+                "ON o.office_id = dio.office_id " +
+                "WHERE dio.doctor_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
+        if(results.next()) {
+            office = mapRowToOffice(results);
+        }
+        return office;
     }
 
     @Override
