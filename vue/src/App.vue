@@ -14,7 +14,9 @@
       
     <div id="nav">
       <ul>
-        <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
+        <li><router-link v-bind:to="{ name: 'home' }">Home
+          <img src="../public/home_alt.png" alt="stethoscope image" class="dr-logo"/>
+          </router-link></li>
       </ul>
       <userNav v-if="$store.state.token !== ''" />
       <img src="../public/never-miss.jpg" alt="Never Miss Appt" id="never-miss" />
@@ -79,13 +81,14 @@ html, body, #app {
 
 #logo-clear{
   margin-top: -20px;
+  opacity: 1;
 }
 
  #main {
- background-image: url("../public/logo-opacity.png");
+ background-image: url("../public/medpage-opa.png");
  background-repeat: no-repeat;
  background-position: center;
- background-size: 40%;
+ background-size: 100%;
  
  
 }
@@ -97,7 +100,7 @@ html, body, #app {
 
 #never-miss {
   width: 247.5px;
-  padding-top: 1px;
+  padding-top: 10px;
 }
 
 #header-text {
