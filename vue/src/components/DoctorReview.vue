@@ -1,9 +1,9 @@
 <template>
     <div class="reviewRow">
         <div class="review_desc">
-            <span class="reviewDate">{{review.reviewDate}}</span>
+            <div class="reviewDate">{{review.reviewDate}}</div>
             <br />
-            {{review.reviewDesc}} - <span class="signature">{{review.reviewerName}} </span>
+            {{review.reviewDesc}} - <div class="signature">{{review.reviewerName}} </div>
         </div>
 
         <div class="commentBox">
