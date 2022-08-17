@@ -48,13 +48,16 @@ h1 #welcome{
 }
 
 span {
+   font-size: 44px;
   display: inline-block;
   opacity: 0;
   filter: blur(4px);
   white-space: pre-wrap;
+  
 }
 
 span:nth-child(1) {
+  padding-left: 40px;
   animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
 }
 

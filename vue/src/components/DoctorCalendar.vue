@@ -163,7 +163,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius:20px;
     padding:20px 40px;
-    width:600px;
+    width:555px;
 }
 #availCalendar {
     border-collapse: collapse;
