@@ -3,37 +3,37 @@
         <ul>
             <li v-if="isDoctor">      
                 <router-link :to="{ name: 'appts'}">
-                    View Appointments <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
+                    View Appointments <img src="../../public/clinical_fe.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link> 
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'office'}">
-                    Office Info <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
+                    Office Info <img src="../../public/info.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'calendar'}">
-                    Calendar Info <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
+                    Calendar Info <img src="../../public/calendar.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isDoctor">
                 <router-link :to="{ name: 'reviews'}">
-                    Reviews <img src="../../public/stethoscope.png" alt="stethoscope image" class="dr-logo"/>
+                    Reviews <img src="../../public/blood_pressure.png" alt="stethoscope image" class="dr-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'appts'}">
-                    View Appointments <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
+                    View Appointments <img src="../../public/calendar.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'office'}">
-                    Office Info <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
+                    Office Info <img src="../../public/info.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
             <li v-if="isPatient">
                 <router-link :to="{ name: 'reviews'}">
-                    Doctors <img src="../../public/blood_pressure.png" alt="blood pressure image" class="pt-logo"/>
+                    Doctors <img src="../../public/doctor.png" alt="blood pressure image" class="pt-logo"/>
                 </router-link>
             </li>
         </ul>
@@ -93,11 +93,12 @@ ul li a {
     display: inline-block;
     text-decoration: none;
     color:white;
-    padding:27px 0px;
+    padding:28px 0px;
     width: 100%; 
     position:relative;
     z-index: 1;
     transition: all .5s;
+    border: .5px white solid;
 }
 
 
