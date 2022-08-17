@@ -6,7 +6,7 @@
       </head>
     <div id="header">
       <img src="../public/clearLogo.png" alt="Medical App logo" id="logo" />
-      <p id="header-text"> Medical Scheduling </p>
+      <p id="header-text"> MEDICAL SCHEDULING </p>
       <img src="../public/jr-logo.jpg" alt="J R Group logo" id="jr-group" />
     </div>
 
@@ -14,7 +14,9 @@
       
     <div id="nav">
       <ul>
-        <li><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
+        <li><router-link v-bind:to="{ name: 'home' }">Home
+          <img src="../public/home_alt.png" alt="stethoscope image" class="dr-logo"/>
+          </router-link></li>
       </ul>
       <userNav v-if="$store.state.token !== ''" />
       <img src="../public/never-miss.jpg" alt="Never Miss Appt" id="never-miss" />
@@ -23,6 +25,7 @@
     <div id="main">
       <div id="logout"><router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout {{this.$store.state.user.firstName}} {{this.$store.state.user.lastName}}</router-link></div>
       <router-view />
+      <!-- <img src="../public/clearLogo.png" alt="Medical App Logo" id="logo-clear" /> -->
     </div>
 
   </div>
@@ -65,20 +68,29 @@ html, body, #app {
   background-image: linear-gradient(to right, rgba(2,48,71,0.25), rgba(2,48,71,1));
   grid-area: header;
   display: grid;
-  grid-template-columns: 1fr 1fr 312.53px;
+  grid-template-columns: .65fr 1fr 312.53px;
 }
 
-#header-text {
- font-family: 'Crimson Text', serif;
- 
-}
 
 #logo {
   width: 90px;
   padding-left: 80px;
   padding-top: 5px;
   vertical-align: bottom;
+}
 
+#logo-clear{
+  margin-top: -20px;
+  opacity: 1;
+}
+
+ #main {
+ background-image: url("../public/medpage-opa.png");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: 100%;
+ 
+ 
 }
 
 #jr-group {
@@ -88,17 +100,27 @@ html, body, #app {
 
 #never-miss {
   width: 247.5px;
+  padding-top: 10px;
 }
 
 #header-text {
-  font-size: 40px;
+  display: block;
+  padding-top: -30px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  max-height: 100px;
+  font-size: 50px;
   color: white;
+  font-family: 'Crimson Text', serif;
+  
+  
 }
 
 #nav {
   grid-area: nav;
-  border-right: solid 1px black;
+  border-right: solid 1px rgb(194, 205, 229);
   height: 100%;
+  background-color: #27A2bf;
 }
 
 #nav ul {
