@@ -10,7 +10,7 @@
         <div class="individualReview" v-for="review in reviews" v-bind:key="review.reviewId">
             <p class="review_desc">"{{review.reviewDesc}}"</p>
             <p class="signature">{{review.reviewerName}} <br />
-                <span class="reviewDate">{{review.reviewDate}}</span>    
+                <span class="reviewDate">{{review.reviewDate}}</span>
             </p>
             <div class="doctorReply">
             <p v-if="review.doctorReply">Doctor's Reply</p>
@@ -18,6 +18,13 @@
             </div>
         </div>
 
+        <div id="newReviewForm" v-if="selectedDoctor > 0">
+            <form>
+                <label>Add a review for this doctor:</label>
+                <textarea v-model="review.reviewDesc"></textarea>
+                <input type="submit" value="Add Review" v-on:click.prevent="addReview" />
+            </form>
+        </div>
     </div>
 </template>
 
@@ -34,12 +41,12 @@ export default {
                 reviewId: null,
                 reviewerId: null,
                 reviewerName: '',
-                reviewDate: '',
+                reviewDate: new Date(),
                 officeName: '',
                 doctorId: null,
                 doctorName: '',
                 reviewDesc: '',
-                rating: null,
+                rating: 1, //hardcoded rating as is unused throughout app at this time
                 doctorReply: ''
             },
             doctors: [],
@@ -48,13 +55,13 @@ export default {
         }
     },
     
-  methods: {
-      retrieveAllDoctors() {
+    methods: {
+        retrieveAllDoctors() {
           DoctorService.listAllDoctors().then(response => {
               this.doctors = response.data;
               console.log(response);
-          })
-      },
+          });
+        },
         retrieveReviews(doctorId) {
             ReviewsService.getAllDoctorReviews(doctorId).then(response => {
                 this.reviews = response.data;
@@ -63,6 +70,17 @@ export default {
         },
         showReview() {
             this.isShown = !this.isShown;
+        },
+        addReview() {
+            this.review.doctorId = this.selectedDoctor;
+            this.review.reviewerId = this.$store.state.user.userId;
+            this.review.reviewDate = this.review.reviewDate.toISOString().split('T')[0];
+            ReviewsService.createReview(this.review).then(response => {
+                if (response.status == 200) {
+                    this.retrieveReviews(this.selectedDoctor);
+                    this.review.reviewDesc = '';
+                }
+            });
         }
     },
     created() {
@@ -96,5 +114,14 @@ export default {
 .doctorReply p {
     margin:0;
     margin-bottom: 5px;
+}
+#newReviewForm {
+    padding: 10px 20px;
+    font-size:18px;
+}
+#newReviewForm textarea {
+    width: 400px;
+    height: 100px;
+    margin-top:0;
 }
 </style>

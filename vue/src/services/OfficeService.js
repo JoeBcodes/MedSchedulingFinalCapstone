@@ -19,7 +19,7 @@ export default {
     },
 
     addDoctorToOffice(officeId, doctorId) {
-        return axios.post(`/${officeId}/update/add-doctor`, doctorId);
+        return axios.post(`office/${officeId}/update/add-doctor/${doctorId}`);
     },
 
     removeDoctorFromOffice(officeId, doctorId) {
