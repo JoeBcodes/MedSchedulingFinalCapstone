@@ -59,6 +59,16 @@ export default {
                 startTime: '08:00',
                 endTime: '17:00',
             },
+            filterCal: [],
+            dayArray: [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ],
             arrayOfDays: {
                 sunday: 1,
                 monday: 2,
@@ -70,11 +80,28 @@ export default {
             }
         }
     },
- methods: {
+    computed: {
+    
+    },
+    methods: {
         retrieveCalendars(doctorId) {
             CalendarService.getCalendarList(doctorId).then(response => {
                 this.$store.commit("SET_CALENDAR", response.data);
-                console.log(response);
+                this.filteredCalendar();
+            });
+        },
+        filteredCalendar() {
+            // for (let i = 0; i == this.dayArray.length; i++) {
+            //     const entry = this.$store.state.calendars.find(item => {
+            //         item.dayOfTheWeek === this.dayArray[i]
+            //             console.log(item);
+            //     });
+            // }
+            this.filterCal = this.$store.state.calendars.filter(item => {
+                for (let i = 0; i == this.dayArray.length; i++) {
+                    console.log(item);
+                    return item.dayOfTheWeek === this.dayArray[i];
+                }
             });
         },
         addCalendarItem() {
