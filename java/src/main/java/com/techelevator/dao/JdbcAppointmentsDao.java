@@ -20,9 +20,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-//    @Override
-//    public int findIdByApptDate() {}
-
     @Override
     public Appointments getApptById(int apptId) {
         Appointments appointment = null;
@@ -40,8 +37,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointment;
     }
 
-//isAvailable should be false, should only be visible to Drs// must also display the patient name
-    //sql use OR
     @Override
     public List <Appointments> getAllBookedApptsByDoctor(String userName) {
         List <Appointments> appointments = new ArrayList<>();
@@ -81,8 +76,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
-
-    //find all by specific dr, should only be visible to patients
     @Override
     public List <Appointments> getAllAvailableApptsByDoctor(int userId) {
         List <Appointments> appointments = new ArrayList<>();
@@ -101,11 +94,9 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
-    //find all by specific dr, should only be visible to patients
     @Override
     public List <Appointments> getApptsByDoctorAndDate(int doctorId, String date) {
         List <Appointments> appointments = new ArrayList<>();
-//        LocalDate newDate = LocalDate.parse(date);
         String sql = "SELECT a.appt_id, a.doctor_id, du.first_name ||' '|| du.last_name AS doctor_name, a.patient_id, pu.first_name ||' '|| pu.last_name AS patient_name, a.appt_date, a.appt_time, a.purpose_of_visit, a.is_read, a.is_available " +
                 "FROM appointments a " +
                 "JOIN users du " +
@@ -121,8 +112,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
-
-    //find all regardless of Dr, only viewable by patient
     @Override
     public List<Appointments> getAllAvailableAppts() {
         List <Appointments> appointments = new ArrayList<>();
@@ -143,7 +132,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
         return appointments;
     }
 
-
     @Override
     public void createAppt(Appointments appointment) {
         String sql = "INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available) " +
@@ -153,8 +141,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 appointment.isAvailable());
         }
 
-
-    //appt notification  - GET - use isRead = false
     @Override
     public List<Appointments> getUnreadAppts() {
         List <Appointments> appointments = new ArrayList<>();
@@ -182,7 +168,6 @@ public class JdbcAppointmentsDao implements AppointmentsDao{
                 "WHERE appt_id = ?;";
         jdbcTemplate.update(sql, apptId);
     }
-
 
     private Appointments mapRowToAppointments(SqlRowSet rs) {
         Appointments appointment = new Appointments();

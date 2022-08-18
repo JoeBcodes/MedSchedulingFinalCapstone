@@ -6,7 +6,6 @@ import java.util.Date;
 public class Appointments {
 
     private int apptId;
-    //change to userId
     private int doctorId;
     private int patientId;
     private String apptDate;

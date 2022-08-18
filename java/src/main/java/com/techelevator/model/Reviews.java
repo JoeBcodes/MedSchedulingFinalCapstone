@@ -5,7 +5,6 @@ import java.sql.Date;
 
 public class Reviews {
 
-    //@NotBlank
     private int reviewId;
     private int reviewerId;
     private String reviewerName;

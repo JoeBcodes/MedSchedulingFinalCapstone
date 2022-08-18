@@ -31,7 +31,8 @@ public class JdbcReviewsDao implements ReviewsDao {
                 "ON r.doctor_id = dio.doctor_id " +
                 "JOIN office o " +
                 "ON dio.office_id = o.office_id " +
-                "WHERE r.doctor_id = ?;";
+                "WHERE r.doctor_id = ? " +
+                "ORDER BY r.review_date DESC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, doctorId);
         while (results.next()) {
             Reviews review = mapRowToReviews(results);
@@ -63,7 +64,6 @@ public class JdbcReviewsDao implements ReviewsDao {
         }
         return reviews;
     }
-
 
     @Override
     public Reviews getReviewById(int reviewId) {
@@ -102,9 +102,6 @@ public class JdbcReviewsDao implements ReviewsDao {
                 "WHERE review_id = ?;";
         jdbcTemplate.update(sql, review.getDoctorReply(), review.getReviewId());
     }
-
-
-
 
     private Reviews mapRowToReviews(SqlRowSet rowSet) {
         Reviews reviews = new Reviews();
