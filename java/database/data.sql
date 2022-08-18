@@ -186,6 +186,10 @@ INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_o
 VALUES (2, 4, '2022-12-14', '11:00:00', 'I just want someone to talk to', false, false);
 INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
 VALUES (6, 4, '2022-12-14', '11:00:00', 'root canal appointment', false, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
+VALUES (6, 4, '2022-08-01', '11:00:00', 'root canal appointment', false, false);
+INSERT INTO appointments (doctor_id, patient_id, appt_date, appt_time, purpose_of_visit, is_read, is_available)
+VALUES (6, 4, '2022-08-05', '11:00:00', 'root canal appointment', false, false);
 
 SELECT * FROM appointments;
 
