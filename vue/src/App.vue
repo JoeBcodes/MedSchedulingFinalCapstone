@@ -87,10 +87,9 @@ html, body, #app {
  #main {
  background-image: url("../public/medpage-opa.png");
  background-repeat: no-repeat;
- background-position: center;
+ background-position: top;
  background-size: 100%;
- 
- 
+background-color: #F2F0EF;
 }
 
 #jr-group {
