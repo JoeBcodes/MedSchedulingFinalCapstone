@@ -32,13 +32,11 @@ public class AppointmentsController {
         return appointmentsDao.getApptById(id);
     }
 
-    //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/{username}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByDoctorList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByDoctor(username);
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/patient-booked/{username}", method = RequestMethod.GET)
     public List<Appointments> getAllBookedApptsByPatientList(@PathVariable String username, Principal principal) {
         return appointmentsDao.getAllBookedApptsByPatient(username);
@@ -49,27 +47,17 @@ public class AppointmentsController {
         return appointmentsDao.getApptsByDoctorAndDate(id, date);
     }
 
-      //is this a duplicate of getAllBookedApptsByDoctorList ??
-//    @ResponseStatus(HttpStatus.FORBIDDEN)
-//    //@PreAuthorize("hasRole('PATIENT')")
-//    @RequestMapping(path = "/patient/{id}", method = RequestMethod.GET)
-//    public List<Appointments> getAllAvailableApptsByDoctorList(@PathVariable int id) {
-//        return appointmentsDao.getAllAvailableApptsByDoctor(id);
-//    }
-
     @PreAuthorize("permitAll()")
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Appointments> getAllAvailableApptsList() {
         return appointmentsDao.getAllAvailableAppts();
     }
 
-    //@PreAuthorize("hasRole('DOCTOR')")
     @RequestMapping(path = "/doctor/notifications", method = RequestMethod.GET)
     public List<Appointments> getUnreadApptsList() {
         return appointmentsDao.getUnreadAppts();
     }
 
-    //@PreAuthorize("hasRole('PATIENT')")
     @RequestMapping(path = "/new-appointment", method = RequestMethod.POST)
     public void createNewAppt(@Valid @RequestBody Appointments appointment) {
         appointmentsDao.createAppt(appointment);
