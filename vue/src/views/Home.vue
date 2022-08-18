@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #logo-clear {
   width: 50%;
   display: block;
@@ -47,7 +47,7 @@ h1 #welcome{
   }
 }
 
-span {
+span  {
    font-size: 44px;
   display: inline-block;
   opacity: 0;
