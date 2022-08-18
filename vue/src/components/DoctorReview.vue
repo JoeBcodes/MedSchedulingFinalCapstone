@@ -3,7 +3,7 @@
         <div class="review_desc">
             <div class="reviewDate">{{review.reviewDate}}</div>
             <br />
-            {{review.reviewDesc}} - <div class="signature">{{review.reviewerName}} </div>
+            {{review.reviewDesc}} <div class="signature">{{review.reviewerName}} </div>
         </div>
 
         <div class="commentBox">
