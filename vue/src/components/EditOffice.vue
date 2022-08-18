@@ -113,7 +113,7 @@ export default {
                     }
                 });
             } else {
-                OfficeService.updateOfficeForDoctor(this.office.officeId, this.$store.state.user.userId).then(response => {
+                OfficeService.updateOfficeForDoctor(this.doctorsOfficeId, this.$store.state.user.userId).then(response => {
                     if (response.status == 200) {
                         this.getOfficeInfoForDoctor();
                     }
