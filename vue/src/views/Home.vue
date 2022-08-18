@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #logo-clear {
   width: 50%;
   display: block;
