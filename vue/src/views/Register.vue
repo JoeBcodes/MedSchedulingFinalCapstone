@@ -7,9 +7,9 @@
       </div>
       <span>I am registering as a:</span><br />
       <input type="radio" name="role" value="DOCTOR" v-model="user.role" />
-      <label for="role">Doctor</label>
+      <label class="radioLabel" for="role">Doctor</label>
       <input type="radio" name="role" value="PATIENT" v-model="user.role" />
-      <label for="role">Patient</label>
+      <label class="radioLabel" for="role">Patient</label>
       <br />
       <label for="username" class="sr-only">Username</label>
       <input
@@ -149,5 +149,8 @@ input[type="radio"] {
 .form-register button {
   display: block;
   margin-bottom:10px;
+}
+.radioLabel {
+  display: inline;
 }
 </style>
