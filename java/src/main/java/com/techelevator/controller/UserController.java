@@ -18,10 +18,5 @@ import java.util.List;
             this.userDao = userDao;
 
         }
-//
-//        @RequestMapping(path = "/{userId}", method = RequestMethod.GET)
-//        public List<User> findAll() {
-//            return userDao.findAll();
-//        }
 
     }
